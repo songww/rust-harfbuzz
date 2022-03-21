@@ -11,16 +11,8 @@ fn main() {
     let host = env::var("HOST").unwrap();
     let target = env::var("TARGET").unwrap();
 
-    println!("cargo:rerun-if-env-changed=HARFBUZZ_SYS_NO_PKG_CONFIG");
-    if target.contains("wasm32") || env::var_os("HARFBUZZ_SYS_NO_PKG_CONFIG").is_none() {
-        if pkg_config::probe_library("harfbuzz").is_ok() {
-            return;
-        }
-    }
-
     let out_dir = env::var("OUT_DIR").unwrap();
     let out_path = PathBuf::from(&out_dir);
-    // let build_dir = out_path.join("build");
 
     let source = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("harfbuzz");
 
@@ -336,4 +328,6 @@ strip = '{strip}'",
 }
 
 #[cfg(not(feature = "build-native-harfbuzz"))]
-fn main() {}
+fn main() {
+    pkg_config::probe_library("harfbuzz").expect("libharfbuzz not found.");
+}
