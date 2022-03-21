@@ -5,9 +5,9 @@
 <title>hb-ot-var: HarfBuzz Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="HarfBuzz Manual">
-<link rel="up" href="ch13.html" title="OpenType API">
+<link rel="up" href="opentype-api.html" title="OpenType API">
 <link rel="prev" href="harfbuzz-hb-ot-shape.html" title="hb-ot-shape">
-<link rel="next" href="ch14.html" title="Apple Advanced Typography API">
+<link rel="next" href="apple-advanced-typography-api.html" title="Apple Advanced Typography API">
 <meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -18,9 +18,9 @@
                   <a href="#harfbuzz-hb-ot-var.description" class="shortcut">Description</a></span>
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><a accesskey="u" href="ch13.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="opentype-api.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="harfbuzz-hb-ot-shape.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="ch14.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="apple-advanced-typography-api.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="harfbuzz-hb-ot-var"></a><div class="titlepage"></div>
@@ -190,7 +190,7 @@ hb_ot_var_has_data (<em class="parameter"><code><a class="link" href="harfbuzz-h
 </div>
 <div class="refsect3">
 <a name="hb-ot-var-has-data.returns"></a><h4>Returns</h4>
-<p> true if data found, false otherwise</p>
+<p> <code class="literal">true</code> if data found, <code class="literal">false</code> otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-1-4-2.html#api-index-1.4.2">1.4.2</a></p>
 </div>
@@ -232,7 +232,7 @@ in the specified face.</p>
 </div>
 <div class="refsect3">
 <a name="hb-ot-var-find-axis-info.returns"></a><h4>Returns</h4>
-<p> true if data found, false otherwise</p>
+<p> <code class="literal">true</code> if data found, <code class="literal">false</code> otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-2-2-0.html#api-index-2.2.0">2.2.0</a></p>
 </div>
@@ -296,7 +296,7 @@ at the offset provided.</p>
 <td class="parameter_name"><p>axes_count</p></td>
 <td class="parameter_description"><p>Input = the maximum number of variation axes to return;
 Output = the actual number of variation axes returned (may be zero). </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for input and for returning results. Default is transfer full."><span class="acronym">inout</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for input and for returning results. Default is transfer full."><span class="acronym">inout</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>axes_array</p></td>
@@ -447,7 +447,7 @@ named instance in the face.</p>
 <td class="parameter_name"><p>coords_length</p></td>
 <td class="parameter_description"><p>Input = the maximum number of coordinates to return;
 Output = the actual number of coordinates returned (may be zero). </p></td>
-<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for input and for returning results. Default is transfer full."><span class="acronym">inout</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
+<td class="parameter_annotations"><span class="annotation">[<acronym title="Parameter for input and for returning results. Default is transfer full."><span class="acronym">inout</span></acronym>][<acronym title="NULL may be passed instead of a pointer to a location."><span class="acronym">optional</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>coords</p></td>
@@ -566,34 +566,41 @@ applied, as described at https://docs.microsoft.com/en-us/typography/opentype/sp
 <a name="HB-OT-TAG-VAR-AXIS-ITALIC:CAPS"></a><h3>HB_OT_TAG_VAR_AXIS_ITALIC</h3>
 <pre class="programlisting">#define HB_OT_TAG_VAR_AXIS_ITALIC HB_TAG('i','t','a','l')
 </pre>
+<p>Registered tag for the roman/italic axis.</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="HB-OT-TAG-VAR-AXIS-OPTICAL-SIZE:CAPS"></a><h3>HB_OT_TAG_VAR_AXIS_OPTICAL_SIZE</h3>
 <pre class="programlisting">#define HB_OT_TAG_VAR_AXIS_OPTICAL_SIZE HB_TAG('o','p','s','z')
 </pre>
+<p>Registered tag for the optical-size axis.</p>
+<div class="note">Note: The optical-size axis supersedes the OpenType `size` feature.</div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="HB-OT-TAG-VAR-AXIS-SLANT:CAPS"></a><h3>HB_OT_TAG_VAR_AXIS_SLANT</h3>
 <pre class="programlisting">#define HB_OT_TAG_VAR_AXIS_SLANT HB_TAG('s','l','n','t')
 </pre>
+<p>Registered tag for the slant axis</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="HB-OT-TAG-VAR-AXIS-WEIGHT:CAPS"></a><h3>HB_OT_TAG_VAR_AXIS_WEIGHT</h3>
 <pre class="programlisting">#define HB_OT_TAG_VAR_AXIS_WEIGHT HB_TAG('w','g','h','t')
 </pre>
+<p>Registered tag for the weight axis.</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="HB-OT-TAG-VAR-AXIS-WIDTH:CAPS"></a><h3>HB_OT_TAG_VAR_AXIS_WIDTH</h3>
 <pre class="programlisting">#define HB_OT_TAG_VAR_AXIS_WIDTH HB_TAG('w','d','t','h')
 </pre>
+<p>Registered tag for the width axis.</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="hb-ot-var-axis-flags-t"></a><h3>enum hb_ot_var_axis_flags_t</h3>
+<p>Flags for <a class="link" href="harfbuzz-hb-ot-var.html#hb-ot-var-axis-info-t" title="hb_ot_var_axis_info_t"><span class="type">hb_ot_var_axis_info_t</span></a>.</p>
 <div class="refsect3">
 <a name="hb-ot-var-axis-flags-t.members"></a><h4>Members</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -602,20 +609,13 @@ applied, as described at https://docs.microsoft.com/en-us/typography/opentype/sp
 <col class="enum_members_description">
 <col width="200px" class="enum_members_annotations">
 </colgroup>
-<tbody>
-<tr>
+<tbody><tr>
 <td class="enum_member_name"><p><a name="HB-OT-VAR-AXIS-FLAG-HIDDEN:CAPS"></a>HB_OT_VAR_AXIS_FLAG_HIDDEN</p></td>
 <td class="enum_member_description">
 <p>The axis should not be exposed directly in user interfaces.</p>
 </td>
 <td class="enum_member_annotations"> </td>
-</tr>
-<tr>
-<td class="enum_member_name"><p><a name="HB-OT-VAR-AXIS-FLAG-MAX-VALUE:CAPS"></a>_HB_OT_VAR_AXIS_FLAG_MAX_VALUE</p></td>
-<td> </td>
-<td> </td>
-</tr>
-</tbody>
+</tr></tbody>
 </table></div>
 </div>
 <p class="since">Since: <a class="link" href="api-index-2-2-0.html#api-index-2.2.0">2.2.0</a></p>

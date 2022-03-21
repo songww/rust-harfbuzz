@@ -5,9 +5,9 @@
 <title>hb-version: HarfBuzz Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="HarfBuzz Manual">
-<link rel="up" href="ch12.html" title="Core API">
+<link rel="up" href="core-api.html" title="Core API">
 <link rel="prev" href="harfbuzz-hb-unicode.html" title="hb-unicode">
-<link rel="next" href="ch13.html" title="OpenType API">
+<link rel="next" href="opentype-api.html" title="OpenType API">
 <meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -18,9 +18,9 @@
                   <a href="#harfbuzz-hb-version.description" class="shortcut">Description</a></span>
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><a accesskey="u" href="ch12.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="core-api.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="harfbuzz-hb-unicode.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="ch13.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="opentype-api.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="harfbuzz-hb-version"></a><div class="titlepage"></div>
@@ -114,6 +114,35 @@ conditionally based on those versions, again, at compile- or run-time.</p>
 <div class="refsect2">
 <a name="HB-VERSION-ATLEAST:CAPS"></a><h3>HB_VERSION_ATLEAST()</h3>
 <pre class="programlisting">#define             HB_VERSION_ATLEAST(major,minor,micro)</pre>
+<p>Tests the library version at compile-time against a minimum value,
+as three integer components.</p>
+<div class="refsect3">
+<a name="HB-VERSION-ATLEAST.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>major</p></td>
+<td class="parameter_description"><p>the major component of the version number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>minor</p></td>
+<td class="parameter_description"><p>the minor component of the version number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>micro</p></td>
+<td class="parameter_description"><p>the micro component of the version number</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 <hr>
 <div class="refsect2">
@@ -190,8 +219,8 @@ as three integer components.</p>
 </div>
 <div class="refsect3">
 <a name="hb-version-atleast.returns"></a><h4>Returns</h4>
-<p> True if the library is equal to or greater than
-the test value, false otherwise</p>
+<p> <code class="literal">true</code> if the library is equal to or greater than
+the test value, <code class="literal">false</code> otherwise</p>
 </div>
 <p class="since">Since: <a class="link" href="api-index-0-9-30.html#api-index-0.9.30">0.9.30</a></p>
 </div>
@@ -214,24 +243,28 @@ hb_version_string (<em class="parameter"><code><span class="type">void</span></c
 <a name="HB-VERSION-MAJOR:CAPS"></a><h3>HB_VERSION_MAJOR</h3>
 <pre class="programlisting">#define HB_VERSION_MAJOR 2
 </pre>
+<p>The major component of the library version available at compile-time.</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="HB-VERSION-MICRO:CAPS"></a><h3>HB_VERSION_MICRO</h3>
-<pre class="programlisting">#define HB_VERSION_MICRO 4
+<pre class="programlisting">#define HB_VERSION_MICRO 1
 </pre>
+<p>The micro component of the library version available at compile-time.</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="HB-VERSION-MINOR:CAPS"></a><h3>HB_VERSION_MINOR</h3>
-<pre class="programlisting">#define HB_VERSION_MINOR 7
+<pre class="programlisting">#define HB_VERSION_MINOR 9
 </pre>
+<p>The minor component of the library version available at compile-time.</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="HB-VERSION-STRING:CAPS"></a><h3>HB_VERSION_STRING</h3>
-<pre class="programlisting">#define HB_VERSION_STRING "2.7.4"
+<pre class="programlisting">#define HB_VERSION_STRING "2.9.1"
 </pre>
+<p>A string literal containing the library version available at compile-time.</p>
 </div>
 </div>
 </div>

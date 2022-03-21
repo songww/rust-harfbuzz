@@ -25,6 +25,7 @@ hb_base_sources = files(
   'hb-array.hh',
   'hb-atomic.hh',
   'hb-bimap.hh',
+  'hb-bit-page.hh',
   'hb-blob.cc',
   'hb-blob.hh',
   'hb-buffer-serialize.cc',
@@ -53,6 +54,8 @@ hb_base_sources = files(
   'hb-map.cc',
   'hb-map.hh',
   'hb-meta.hh',
+  'hb-ms-feature-ranges.cc',
+  'hb-ms-feature-ranges.hh',
   'hb-mutex.hh',
   'hb-null.hh',
   'hb-number.cc',
@@ -126,10 +129,11 @@ hb_base_sources = files(
   'hb-ot-shape-complex-khmer.hh',
   'hb-ot-shape-complex-myanmar.cc',
   'hb-ot-shape-complex-myanmar.hh',
+  'hb-ot-shape-complex-syllabic.cc',
+  'hb-ot-shape-complex-syllabic.hh',
   'hb-ot-shape-complex-thai.cc',
-  'hb-ot-shape-complex-use-table.cc',
+  'hb-ot-shape-complex-use-table.hh',
   'hb-ot-shape-complex-use.cc',
-  'hb-ot-shape-complex-use.hh',
   'hb-ot-shape-complex-vowel-constraints.cc',
   'hb-ot-shape-complex-vowel-constraints.hh',
   'hb-ot-shape-complex.hh',
@@ -271,9 +275,7 @@ hb_subset_sources = files(
   'hb-subset-input.hh',
   'hb-subset-plan.cc',
   'hb-subset-plan.hh',
-  'hb-subset-plan.hh',
   'hb-subset.cc',
-  'hb-subset.hh',
   'hb-subset.hh',
 )
 
@@ -475,24 +477,11 @@ if get_option('tests').enabled()
     endforeach
   endif
 
-  check_programs = {
-    'dump-indic-data': ['dump-indic-data.cc', 'hb-ot-shape-complex-indic-table.cc'],
-    'dump-khmer-data': ['dump-khmer-data.cc', 'hb-ot-shape-complex-indic-table.cc'],
-    'dump-myanmar-data': ['dump-myanmar-data.cc', 'hb-ot-shape-complex-indic-table.cc'],
-    'dump-use-data': ['dump-use-data.cc', 'hb-ot-shape-complex-use-table.cc'],
-  }
-  foreach name, source : check_programs
-    executable(name, source,
-      include_directories: incconfig,
-      cpp_args: cpp_args,
-      dependencies: libharfbuzz_dep,
-      install: false,
-    )
-  endforeach
-
   compiled_tests = {
     'test-algs': ['test-algs.cc', 'hb-static.cc'],
     'test-array': ['test-array.cc'],
+    'test-repacker': ['test-repacker.cc', 'hb-static.cc'],
+    'test-priority-queue': ['test-priority-queue.cc', 'hb-static.cc'],
     'test-iter': ['test-iter.cc', 'hb-static.cc'],
     'test-meta': ['test-meta.cc', 'hb-static.cc'],
     'test-number': ['test-number.cc', 'hb-number.cc'],
@@ -656,14 +645,8 @@ if have_gobject
       header: 'hb-gobject.h',
       install: true,
       extra_args:  ['--cflags-begin',
-                    '-DHB_H',
-                    '-DHB_H_IN',
-                    '-DHB_OT_H',
-                    '-DHB_OT_H_IN',
-                    '-DHB_AAT_H',
-                    '-DHB_AAT_H_IN',
-                    '-DHB_GOBJECT_H',
-                    '-DHB_GOBJECT_H_IN',
+                    '-DHB_NO_SINGLE_HEADER_ERROR',
+                    '-DHAVE_GOBJECT',
                     '-DHB_EXTERN=',
                     '--cflags-end'])
   endif

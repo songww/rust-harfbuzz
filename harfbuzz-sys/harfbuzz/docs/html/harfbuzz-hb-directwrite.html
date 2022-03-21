@@ -5,9 +5,9 @@
 <title>hb-directwrite: HarfBuzz Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="HarfBuzz Manual">
-<link rel="up" href="ch15.html" title="Integration API">
+<link rel="up" href="integration-api.html" title="Integration API">
 <link rel="prev" href="harfbuzz-hb-gdi.html" title="hb-gdi">
-<link rel="next" href="api-index-full.html" title="API Index">
+<link rel="next" href="subset-api.html" title="Subset API">
 <meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -18,9 +18,9 @@
                   <a href="#harfbuzz-hb-directwrite.description" class="shortcut">Description</a></span>
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><a accesskey="u" href="ch15.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="integration-api.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="harfbuzz-hb-gdi.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="api-index-full.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="subset-api.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="harfbuzz-hb-directwrite"></a><div class="titlepage"></div>
@@ -73,6 +73,7 @@
 <a name="hb-directwrite-face-create"></a><h3>hb_directwrite_face_create ()</h3>
 <pre class="programlisting"><a class="link" href="harfbuzz-hb-face.html#hb-face-t" title="hb_face_t"><span class="returnvalue">hb_face_t</span></a> *
 hb_directwrite_face_create (<em class="parameter"><code><span class="type">IDWriteFontFace</span> *font_face</code></em>);</pre>
+<p>Constructs a new face object from the specified DirectWrite IDWriteFontFace.</p>
 <div class="refsect3">
 <a name="hb-directwrite-face-create.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -99,6 +100,8 @@ hb_directwrite_face_create (<em class="parameter"><code><span class="type">IDWri
 <a name="hb-directwrite-face-get-font-face"></a><h3>hb_directwrite_face_get_font_face ()</h3>
 <pre class="programlisting"><span class="returnvalue">IDWriteFontFace</span> *
 hb_directwrite_face_get_font_face (<em class="parameter"><code><a class="link" href="harfbuzz-hb-face.html#hb-face-t" title="hb_face_t"><span class="type">hb_face_t</span></a> *face</code></em>);</pre>
+<p>Gets the DirectWrite IDWriteFontFace associated with <em class="parameter"><code>face</code></em>
+.</p>
 <div class="refsect3">
 <a name="hb-directwrite-face-get-font-face.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">

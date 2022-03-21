@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <meta name="description" content="HarfBuzz  HarfBuzz is a text shaping library. Using the HarfBuzz library allows programs to convert a sequence of Unicode input into properly formatted and positioned glyph output—for any writing system and language. The canonical source-code tree is available at github.com/harfbuzz/harfbuzz. See for release tarballs.">
 <link rel="home" href="index.html" title="HarfBuzz Manual">
-<link rel="next" href="pt01.html" title="Part I. User's manual">
+<link rel="next" href="user-manual.html" title="Part I. User's manual">
 <meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -35,13 +35,13 @@
 <hr>
 </div>
 <div class="toc"><dl class="toc">
-<dt><span class="part"><a href="pt01.html">I. User's manual</a></span></dt>
+<dt><span class="part"><a href="user-manual.html">I. User's manual</a></span></dt>
 <dd><dl>
 <dt><span class="chapter"><a href="what-is-harfbuzz.html">What is HarfBuzz?</a></span></dt>
 <dd><dl>
 <dt><span class="section"><a href="what-is-harfbuzz.html#what-is-text-shaping">What is text shaping?</a></span></dt>
 <dt><span class="section"><a href="why-do-i-need-a-shaping-engine.html">Why do I need a shaping engine?</a></span></dt>
-<dt><span class="section"><a href="ch01s03.html">What does HarfBuzz do?</a></span></dt>
+<dt><span class="section"><a href="what-does-harfbuzz-do.html">What does HarfBuzz do?</a></span></dt>
 <dt><span class="section"><a href="what-harfbuzz-doesnt-do.html">What HarfBuzz doesn't do</a></span></dt>
 <dt><span class="section"><a href="why-is-it-called-harfbuzz.html">Why is it called HarfBuzz?</a></span></dt>
 </dl></dd>
@@ -58,9 +58,9 @@
 </dl></dd>
 <dt><span class="chapter"><a href="getting-started.html">Getting started with HarfBuzz</a></span></dt>
 <dd><dl>
-<dt><span class="section"><a href="getting-started.html#id-1.2.4.2">An overview of the HarfBuzz shaping API</a></span></dt>
-<dt><span class="section"><a href="ch03s02.html">Terminology</a></span></dt>
-<dt><span class="section"><a href="ch03s03.html">A simple shaping example</a></span></dt>
+<dt><span class="section"><a href="getting-started.html#an-overview-of-the-harfbuzz-shaping-api">An overview of the HarfBuzz shaping API</a></span></dt>
+<dt><span class="section"><a href="terminology.html">Terminology</a></span></dt>
+<dt><span class="section"><a href="a-simple-shaping-example.html">A simple shaping example</a></span></dt>
 </dl></dd>
 <dt><span class="chapter"><a href="shaping-concepts.html">Shaping concepts</a></span></dt>
 <dd><dl>
@@ -125,7 +125,6 @@
 <dt><span class="section"><a href="utilities.html#utilities-command-line-hbsubset">hb-subset</a></span></dt>
 </dl></dd>
 <dt><span class="section"><a href="utilities-common-types-apis.html">Common data types and APIs</a></span></dt>
-<dt><span class="section"><a href="utilities-ucdn.html">UCDN</a></span></dt>
 </dl></dd>
 <dt><span class="chapter"><a href="integration.html">Platform Integration Guide</a></span></dt>
 <dd><dl>
@@ -137,9 +136,9 @@
 <dt><span class="section"><a href="integration-python.html">Python bindings</a></span></dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="part"><a href="pt02.html">II. Reference manual</a></span></dt>
+<dt><span class="part"><a href="reference-manual.html">II. Reference manual</a></span></dt>
 <dd><dl>
-<dt><span class="chapter"><a href="ch12.html">Core API</a></span></dt>
+<dt><span class="chapter"><a href="core-api.html">Core API</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="harfbuzz-hb-blob.html">hb-blob</a></span><span class="refpurpose"> — Binary data containers</span>
@@ -178,7 +177,7 @@
 <span class="refentrytitle"><a href="harfbuzz-hb-version.html">hb-version</a></span><span class="refpurpose"> — Information about the version of HarfBuzz in use</span>
 </dt>
 </dl></dd>
-<dt><span class="chapter"><a href="ch13.html">OpenType API</a></span></dt>
+<dt><span class="chapter"><a href="opentype-api.html">OpenType API</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="harfbuzz-hb-ot-color.html">hb-ot-color</a></span><span class="refpurpose"> — OpenType Color Fonts</span>
@@ -208,11 +207,11 @@
 <span class="refentrytitle"><a href="harfbuzz-hb-ot-var.html">hb-ot-var</a></span><span class="refpurpose"> — OpenType Font Variations</span>
 </dt>
 </dl></dd>
-<dt><span class="chapter"><a href="ch14.html">Apple Advanced Typography API</a></span></dt>
+<dt><span class="chapter"><a href="apple-advanced-typography-api.html">Apple Advanced Typography API</a></span></dt>
 <dd><dl><dt>
 <span class="refentrytitle"><a href="harfbuzz-hb-aat-layout.html">hb-aat-layout</a></span><span class="refpurpose"> — Apple Advanced Typography Layout</span>
 </dt></dl></dd>
-<dt><span class="chapter"><a href="ch15.html">Integration API</a></span></dt>
+<dt><span class="chapter"><a href="integration-api.html">Integration API</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="harfbuzz-hb-coretext.html">hb-coretext</a></span><span class="refpurpose"> — CoreText integration</span>
@@ -222,9 +221,6 @@
 </dt>
 <dt>
 <span class="refentrytitle"><a href="harfbuzz-hb-glib.html">hb-glib</a></span><span class="refpurpose"> — GLib integration</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="harfbuzz-hb-gobject.html">hb-gobject</a></span><span class="refpurpose"> — GObject integration support</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="harfbuzz-hb-graphite2.html">hb-graphite2</a></span><span class="refpurpose"> — Graphite2 integration</span>
@@ -242,9 +238,19 @@
 <span class="refentrytitle"><a href="harfbuzz-hb-directwrite.html">hb-directwrite</a></span><span class="refpurpose"> — DirectWrite integration</span>
 </dt>
 </dl></dd>
+<dt><span class="chapter"><a href="subset-api.html">Subset API</a></span></dt>
+<dd><dl><dt>
+<span class="refentrytitle"><a href="harfbuzz-hb-subset.html">hb-subset</a></span><span class="refpurpose"> — Subsets font files.</span>
+</dt></dl></dd>
 <dt><span class="index"><a href="api-index-full.html">API Index</a></span></dt>
 <dt><span class="index"><a href="deprecated-api-index.html">Index of deprecated API</a></span></dt>
+<dt><span class="index"><a href="api-index-2-9-1.html">Index of new symbols in 2.9.1</a></span></dt>
+<dt><span class="index"><a href="api-index-2-9-0.html">Index of new symbols in 2.9.0</a></span></dt>
+<dt><span class="index"><a href="api-index-2-8-2.html">Index of new symbols in 2.8.2</a></span></dt>
 <dt><span class="index"><a href="api-index-2-7-3.html">Index of new symbols in 2.7.3</a></span></dt>
+<dt><span class="index"><a href="api-index-2-6-8.html">Index of new symbols in 2.6.8</a></span></dt>
+<dt><span class="index"><a href="api-index-2-6-5.html">Index of new symbols in 2.6.5</a></span></dt>
+<dt><span class="index"><a href="api-index-2-6-3.html">Index of new symbols in 2.6.3</a></span></dt>
 <dt><span class="index"><a href="api-index-2-6-0.html">Index of new symbols in 2.6.0</a></span></dt>
 <dt><span class="index"><a href="api-index-2-5-0.html">Index of new symbols in 2.5.0</a></span></dt>
 <dt><span class="index"><a href="api-index-2-4-0.html">Index of new symbols in 2.4.0</a></span></dt>
@@ -259,6 +265,7 @@
 <dt><span class="index"><a href="api-index-1-8-0.html">Index of new symbols in 1.8.0</a></span></dt>
 <dt><span class="index"><a href="api-index-1-7-7.html">Index of new symbols in 1.7.7</a></span></dt>
 <dt><span class="index"><a href="api-index-1-7-5.html">Index of new symbols in 1.7.5</a></span></dt>
+<dt><span class="index"><a href="api-index-1-7-2.html">Index of new symbols in 1.7.2</a></span></dt>
 <dt><span class="index"><a href="api-index-1-6-0.html">Index of new symbols in 1.6.0</a></span></dt>
 <dt><span class="index"><a href="api-index-1-5-0.html">Index of new symbols in 1.5.0</a></span></dt>
 <dt><span class="index"><a href="api-index-1-4-3.html">Index of new symbols in 1.4.3</a></span></dt>
@@ -273,10 +280,13 @@
 <dt><span class="index"><a href="api-index-0-9-41.html">Index of new symbols in 0.9.41</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-39.html">Index of new symbols in 0.9.39</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-38.html">Index of new symbols in 0.9.38</a></span></dt>
+<dt><span class="index"><a href="api-index-0-9-33.html">Index of new symbols in 0.9.33</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-31.html">Index of new symbols in 0.9.31</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-30.html">Index of new symbols in 0.9.30</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-28.html">Index of new symbols in 0.9.28</a></span></dt>
+<dt><span class="index"><a href="api-index-0-9-26.html">Index of new symbols in 0.9.26</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-22.html">Index of new symbols in 0.9.22</a></span></dt>
+<dt><span class="index"><a href="api-index-0-9-21.html">Index of new symbols in 0.9.21</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-20.html">Index of new symbols in 0.9.20</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-11.html">Index of new symbols in 0.9.11</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-10.html">Index of new symbols in 0.9.10</a></span></dt>
@@ -284,9 +294,37 @@
 <dt><span class="index"><a href="api-index-0-9-7.html">Index of new symbols in 0.9.7</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-5.html">Index of new symbols in 0.9.5</a></span></dt>
 <dt><span class="index"><a href="api-index-0-9-2.html">Index of new symbols in 0.9.2</a></span></dt>
+<dt><span class="index"><a href="api-index-0-6-0.html">Index of new symbols in 0.6.0</a></span></dt>
 <dt><span class="glossary"><a href="annotation-glossary.html">Annotation Glossary</a></span></dt>
 </dl></dd>
 </dl></div>
+<div class="note">
+<p>
+      The current HarfBuzz codebase is versioned 2.x.x and is stable
+      and under active maintenance. This is what is used in latest
+      versions of Firefox, GNOME, ChromeOS, Chrome, LibreOffice,
+      XeTeX, Android, and KDE, among other places.
+    </p>
+<p>
+      Prior to 2012, the original HarfBuzz codebase (which, these days, is
+      referred to as <span class="emphasis"><em>harfbuzz-old</em></span>) was derived from code
+      in <a class="ulink" href="http://freetype.org/" target="_top">FreeType</a>,
+      <a class="ulink" href="http://pango.org/" target="_top">Pango</a>, and
+      <a class="ulink" href="http://qt-project.org/" target="_top">Qt</a>.
+      It is <span class="emphasis"><em>not</em></span> actively developed or  maintained, and is
+      extremely buggy. All users of harfbuzz-old are encouraged to switch over
+      to the new HarfBuzz as soon as possible.
+    </p>
+<p>
+      To make this distinction clearer in discussions, the current HarfBuzz
+      codebase is sometimes referred to as <span class="emphasis"><em>harfbuzz-ng</em></span>.
+    </p>
+<p>
+      For reference purposes, the harfbuzz-old source tree is archived
+      <a class="ulink" href="http://cgit.freedesktop.org/harfbuzz.old/" target="_top">here</a>.
+      There are no release tarballs of harfbuzz-old whatsoever.
+    </p>
+</div>
 </div>
 <div class="footer">
 <hr>Generated by GTK-Doc V1.32</div>

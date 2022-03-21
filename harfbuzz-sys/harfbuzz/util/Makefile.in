@@ -114,11 +114,11 @@ CONFIG_CLEAN_VPATH_FILES =
 @HAVE_GLIB_TRUE@	hb-ot-shape-closure$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am__hb_ot_shape_closure_SOURCES_DIST = hb-ot-shape-closure.cc \
-	options.cc options.hh main-font-text.hh
+am__hb_ot_shape_closure_SOURCES_DIST = face-options.hh font-options.hh \
+	hb-ot-shape-closure.cc main-font-text.hh options.hh \
+	text-options.hh
 am__objects_1 =
-am__objects_2 = hb-ot-shape-closure.$(OBJEXT) options.$(OBJEXT) \
-	$(am__objects_1)
+am__objects_2 = hb-ot-shape-closure.$(OBJEXT) $(am__objects_1)
 @HAVE_GLIB_TRUE@am_hb_ot_shape_closure_OBJECTS = $(am__objects_2)
 hb_ot_shape_closure_OBJECTS = $(am_hb_ot_shape_closure_OBJECTS)
 hb_ot_shape_closure_LDADD = $(LDADD)
@@ -130,19 +130,20 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-am__hb_shape_SOURCES_DIST = hb-shape.cc options.cc options.hh \
-	main-font-text.hh shape-consumer.hh
-am__objects_3 = hb-shape.$(OBJEXT) options.$(OBJEXT) $(am__objects_1)
+am__hb_shape_SOURCES_DIST = batch.hh face-options.hh font-options.hh \
+	hb-shape.cc main-font-text.hh options.hh output-options.hh \
+	shape-consumer.hh shape-format.hh shape-options.hh \
+	text-options.hh
+am__objects_3 = hb-shape.$(OBJEXT) $(am__objects_1)
 @HAVE_GLIB_TRUE@am_hb_shape_OBJECTS = $(am__objects_3)
 hb_shape_OBJECTS = $(am_hb_shape_OBJECTS)
 hb_shape_LDADD = $(LDADD)
 hb_shape_DEPENDENCIES = $(top_builddir)/src/libharfbuzz.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
-am__hb_subset_SOURCES_DIST = hb-subset.cc options.cc options-subset.cc \
-	options.hh main-font-text.hh
-am__objects_4 = hb-subset.$(OBJEXT) options.$(OBJEXT) \
-	options-subset.$(OBJEXT) $(am__objects_1)
+am__hb_subset_SOURCES_DIST = batch.hh face-options.hh hb-subset.cc \
+	main-font-text.hh options.hh output-options.hh text-options.hh
+am__objects_4 = hb-subset.$(OBJEXT) $(am__objects_1)
 @HAVE_GLIB_TRUE@am_hb_subset_OBJECTS = $(am__objects_4)
 hb_subset_OBJECTS = $(am_hb_subset_OBJECTS)
 am__DEPENDENCIES_2 = $(top_builddir)/src/libharfbuzz.la \
@@ -151,18 +152,16 @@ am__DEPENDENCIES_2 = $(top_builddir)/src/libharfbuzz.la \
 @HAVE_GLIB_TRUE@hb_subset_DEPENDENCIES =  \
 @HAVE_GLIB_TRUE@	$(top_builddir)/src/libharfbuzz-subset.la \
 @HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_2)
-am__hb_view_SOURCES_DIST = hb-view.cc options.cc options.hh \
-	main-font-text.hh shape-consumer.hh ansi-print.cc \
-	ansi-print.hh helper-cairo.cc helper-cairo.hh \
-	helper-cairo-ansi.cc helper-cairo-ansi.hh view-cairo.cc \
-	view-cairo.hh
-am__objects_5 = hb-view.$(OBJEXT) options.$(OBJEXT) \
-	ansi-print.$(OBJEXT) helper-cairo.$(OBJEXT) \
-	helper-cairo-ansi.$(OBJEXT) view-cairo.$(OBJEXT) \
-	$(am__objects_1)
+am__hb_view_SOURCES_DIST = ansi-print.hh face-options.hh \
+	font-options.hh hb-view.cc helper-cairo-ansi.hh \
+	helper-cairo.hh main-font-text.hh options.hh output-options.hh \
+	shape-consumer.hh shape-options.hh text-options.hh \
+	view-cairo.hh view-options.hh
+am__objects_5 = hb-view.$(OBJEXT) $(am__objects_1)
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@am_hb_view_OBJECTS = $(am__objects_5)
 hb_view_OBJECTS = $(am_hb_view_OBJECTS)
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@hb_view_DEPENDENCIES = $(am__DEPENDENCIES_2) \
+@HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1) \
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1) \
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1) \
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1)
@@ -181,12 +180,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/ansi-print.Po \
-	./$(DEPDIR)/hb-ot-shape-closure.Po ./$(DEPDIR)/hb-shape.Po \
-	./$(DEPDIR)/hb-subset.Po ./$(DEPDIR)/hb-view.Po \
-	./$(DEPDIR)/helper-cairo-ansi.Po ./$(DEPDIR)/helper-cairo.Po \
-	./$(DEPDIR)/options-subset.Po ./$(DEPDIR)/options.Po \
-	./$(DEPDIR)/view-cairo.Po
+am__depfiles_remade = ./$(DEPDIR)/hb-ot-shape-closure.Po \
+	./$(DEPDIR)/hb-shape.Po ./$(DEPDIR)/hb-subset.Po \
+	./$(DEPDIR)/hb-view.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -271,6 +267,8 @@ CAIRO_LIBS = @CAIRO_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHAFA_CFLAGS = @CHAFA_CFLAGS@
+CHAFA_LIBS = @CHAFA_LIBS@
 CODE_COVERAGE_CFLAGS = @CODE_COVERAGE_CFLAGS@
 CODE_COVERAGE_CPPFLAGS = @CODE_COVERAGE_CPPFLAGS@
 CODE_COVERAGE_CXXFLAGS = @CODE_COVERAGE_CXXFLAGS@
@@ -299,8 +297,6 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
-FONTCONFIG_CFLAGS = @FONTCONFIG_CFLAGS@
-FONTCONFIG_LIBS = @FONTCONFIG_LIBS@
 FREETYPE_CFLAGS = @FREETYPE_CFLAGS@
 FREETYPE_DEPS = @FREETYPE_DEPS@
 FREETYPE_LIBS = @FREETYPE_LIBS@
@@ -453,42 +449,53 @@ CLEANFILES =
 DISTCLEANFILES = 
 MAINTAINERCLEANFILES = 
 HB_VIEW_sources = \
-	hb-view.cc \
-	options.cc \
-	options.hh \
-	main-font-text.hh \
-	shape-consumer.hh \
-	ansi-print.cc \
 	ansi-print.hh \
-	helper-cairo.cc \
-	helper-cairo.hh \
-	helper-cairo-ansi.cc \
+	face-options.hh \
+	font-options.hh \
+	hb-view.cc \
 	helper-cairo-ansi.hh \
-	view-cairo.cc \
+	helper-cairo.hh \
+	main-font-text.hh \
+	options.hh \
+	output-options.hh \
+	shape-consumer.hh \
+	shape-options.hh \
+	text-options.hh \
 	view-cairo.hh \
+	view-options.hh \
 	$(NULL)
 
 HB_SHAPE_sources = \
+	batch.hh \
+	face-options.hh \
+	font-options.hh \
 	hb-shape.cc \
-	options.cc \
-	options.hh \
 	main-font-text.hh \
+	options.hh \
+	output-options.hh \
 	shape-consumer.hh \
-	$(NULL)
-
-HB_OT_SHAPE_CLOSURE_sources = \
-	hb-ot-shape-closure.cc \
-	options.cc \
-	options.hh \
-	main-font-text.hh \
+	shape-format.hh \
+	shape-options.hh \
+	text-options.hh \
 	$(NULL)
 
 HB_SUBSET_CLI_sources = \
+	batch.hh \
+	face-options.hh \
 	hb-subset.cc \
-	options.cc \
-	options-subset.cc \
-	options.hh \
 	main-font-text.hh \
+	options.hh \
+	output-options.hh \
+	text-options.hh \
+	$(NULL)
+
+HB_OT_SHAPE_CLOSURE_sources = \
+	face-options.hh \
+	font-options.hh \
+	hb-ot-shape-closure.cc \
+	main-font-text.hh \
+	options.hh \
+	text-options.hh \
 	$(NULL)
 
 AM_CPPFLAGS = \
@@ -498,6 +505,7 @@ AM_CPPFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(FREETYPE_CFLAGS) \
 	$(CAIRO_FT_CFLAGS) \
+	$(CHAFA_CFLAGS) \
 	$(NULL)
 
 LDADD = \
@@ -512,6 +520,7 @@ LDADD = \
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(LDADD) \
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(CAIRO_LIBS) \
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(CAIRO_FT_LIBS) \
+@HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(CHAFA_LIBS) \
 @HAVE_CAIRO_FT_TRUE@@HAVE_FREETYPE_TRUE@@HAVE_GLIB_TRUE@	$(NULL)
 
 @HAVE_GLIB_TRUE@hb_shape_SOURCES = $(HB_SHAPE_sources)
@@ -643,16 +652,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ansi-print.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hb-ot-shape-closure.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hb-shape.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hb-subset.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hb-view.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/helper-cairo-ansi.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/helper-cairo.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options-subset.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/view-cairo.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -817,16 +820,10 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/ansi-print.Po
-	-rm -f ./$(DEPDIR)/hb-ot-shape-closure.Po
+		-rm -f ./$(DEPDIR)/hb-ot-shape-closure.Po
 	-rm -f ./$(DEPDIR)/hb-shape.Po
 	-rm -f ./$(DEPDIR)/hb-subset.Po
 	-rm -f ./$(DEPDIR)/hb-view.Po
-	-rm -f ./$(DEPDIR)/helper-cairo-ansi.Po
-	-rm -f ./$(DEPDIR)/helper-cairo.Po
-	-rm -f ./$(DEPDIR)/options-subset.Po
-	-rm -f ./$(DEPDIR)/options.Po
-	-rm -f ./$(DEPDIR)/view-cairo.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -872,16 +869,10 @@ install-ps-am:
 installcheck-am: installcheck-binPROGRAMS
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/ansi-print.Po
-	-rm -f ./$(DEPDIR)/hb-ot-shape-closure.Po
+		-rm -f ./$(DEPDIR)/hb-ot-shape-closure.Po
 	-rm -f ./$(DEPDIR)/hb-shape.Po
 	-rm -f ./$(DEPDIR)/hb-subset.Po
 	-rm -f ./$(DEPDIR)/hb-view.Po
-	-rm -f ./$(DEPDIR)/helper-cairo-ansi.Po
-	-rm -f ./$(DEPDIR)/helper-cairo.Po
-	-rm -f ./$(DEPDIR)/options-subset.Po
-	-rm -f ./$(DEPDIR)/options.Po
-	-rm -f ./$(DEPDIR)/view-cairo.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

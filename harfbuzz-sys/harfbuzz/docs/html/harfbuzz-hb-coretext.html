@@ -5,8 +5,8 @@
 <title>hb-coretext: HarfBuzz Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="HarfBuzz Manual">
-<link rel="up" href="ch15.html" title="Integration API">
-<link rel="prev" href="ch15.html" title="Integration API">
+<link rel="up" href="integration-api.html" title="Integration API">
+<link rel="prev" href="integration-api.html" title="Integration API">
 <link rel="next" href="harfbuzz-hb-ft.html" title="hb-ft">
 <meta name="generator" content="GTK-Doc V1.32 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -18,8 +18,8 @@
                   <a href="#harfbuzz-hb-coretext.description" class="shortcut">Description</a></span>
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><a accesskey="u" href="ch15.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
-<td><a accesskey="p" href="ch15.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="integration-api.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="integration-api.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
 <td><a accesskey="n" href="harfbuzz-hb-ft.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
@@ -161,7 +161,7 @@ CTFontRef.</p>
 <a name="hb-coretext-font-create.returns"></a><h4>Returns</h4>
 <p> the new <a class="link" href="harfbuzz-hb-font.html#hb-font-t" title="hb_font_t"><span class="type">hb_font_t</span></a> font object</p>
 </div>
-<p class="since">Since: 1.7.2</p>
+<p class="since">Since: <a class="link" href="api-index-1-7-2.html#api-index-1.7.2">1.7.2</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -196,6 +196,28 @@ face object</p>
 <a name="hb-coretext-font-get-ct-font"></a><h3>hb_coretext_font_get_ct_font ()</h3>
 <pre class="programlisting"><span class="returnvalue">CTFontRef</span>
 hb_coretext_font_get_ct_font (<em class="parameter"><code><a class="link" href="harfbuzz-hb-font.html#hb-font-t" title="hb_font_t"><span class="type">hb_font_t</span></a> *font</code></em>);</pre>
+<p>Fetches the CTFontRef associated with the specified
+<a class="link" href="harfbuzz-hb-font.html#hb-font-t" title="hb_font_t"><span class="type">hb_font_t</span></a> font object.</p>
+<div class="refsect3">
+<a name="hb-coretext-font-get-ct-font.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>font</p></td>
+<td class="parameter_description"><p><a class="link" href="harfbuzz-hb-font.html#hb-font-t" title="hb_font_t"><span class="type">hb_font_t</span></a> to work upon</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="hb-coretext-font-get-ct-font.returns"></a><h4>Returns</h4>
+<p> the CTFontRef found</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-0-9-10.html#api-index-0.9.10">0.9.10</a></p>
 </div>
 </div>
 <div class="refsect1">

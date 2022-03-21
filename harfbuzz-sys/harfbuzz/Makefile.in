@@ -225,6 +225,8 @@ CAIRO_LIBS = @CAIRO_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHAFA_CFLAGS = @CHAFA_CFLAGS@
+CHAFA_LIBS = @CHAFA_LIBS@
 CODE_COVERAGE_CFLAGS = @CODE_COVERAGE_CFLAGS@
 CODE_COVERAGE_CPPFLAGS = @CODE_COVERAGE_CPPFLAGS@
 CODE_COVERAGE_CXXFLAGS = @CODE_COVERAGE_CXXFLAGS@
@@ -253,8 +255,6 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
-FONTCONFIG_CFLAGS = @FONTCONFIG_CFLAGS@
-FONTCONFIG_LIBS = @FONTCONFIG_LIBS@
 FREETYPE_CFLAGS = @FREETYPE_CFLAGS@
 FREETYPE_DEPS = @FREETYPE_DEPS@
 FREETYPE_LIBS = @FREETYPE_LIBS@
@@ -417,14 +417,11 @@ EXTRA_DIST = \
 	replace-enum-strings.cmake \
 	meson.build \
 	meson_options.txt \
-	subprojects/expat.wrap \
-	subprojects/fontconfig.wrap \
+	subprojects/cairo.wrap \
 	subprojects/freetype2.wrap \
 	subprojects/glib.wrap \
-	subprojects/libffi.wrap \
-	subprojects/proxy-libintl.wrap \
-	subprojects/zlib.wrap \
 	subprojects/google-benchmark.wrap \
+	subprojects/ttf-parser.wrap \
 	perf/meson.build \
 	perf/perf-draw.hh \
 	perf/perf-extents.hh \
@@ -438,8 +435,7 @@ EXTRA_DIST = \
 	perf/texts/en-words.txt \
 	perf/texts/fa-monologue.txt \
 	perf/texts/fa-thelittleprince.txt \
-	meson-cc-tests/intel-atomic-primitives-test.c \
-	meson-cc-tests/solaris-atomic-operations.c \
+	mingw-configure.sh \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \

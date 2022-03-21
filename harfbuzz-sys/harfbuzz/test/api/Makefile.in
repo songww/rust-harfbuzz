@@ -138,11 +138,14 @@ am__EXEEXT_1 =
 @HAVE_GLIB_TRUE@	test-draw$(EXEEXT) test-font$(EXEEXT) \
 @HAVE_GLIB_TRUE@	test-map$(EXEEXT) test-object$(EXEEXT) \
 @HAVE_GLIB_TRUE@	test-ot-alternates$(EXEEXT) \
-@HAVE_GLIB_TRUE@	test-ot-color$(EXEEXT) test-ot-face$(EXEEXT) \
+@HAVE_GLIB_TRUE@	test-ot-color$(EXEEXT) \
+@HAVE_GLIB_TRUE@	test-ot-collect-glyphs$(EXEEXT) \
+@HAVE_GLIB_TRUE@	test-ot-face$(EXEEXT) \
 @HAVE_GLIB_TRUE@	test-ot-glyphname$(EXEEXT) \
 @HAVE_GLIB_TRUE@	test-ot-ligature-carets$(EXEEXT) \
-@HAVE_GLIB_TRUE@	test-ot-name$(EXEEXT) test-ot-meta$(EXEEXT) \
-@HAVE_GLIB_TRUE@	test-ot-metrics$(EXEEXT) test-ot-tag$(EXEEXT) \
+@HAVE_GLIB_TRUE@	test-ot-layout$(EXEEXT) test-ot-name$(EXEEXT) \
+@HAVE_GLIB_TRUE@	test-ot-meta$(EXEEXT) test-ot-metrics$(EXEEXT) \
+@HAVE_GLIB_TRUE@	test-ot-tag$(EXEEXT) \
 @HAVE_GLIB_TRUE@	test-ot-extents-cff$(EXEEXT) \
 @HAVE_GLIB_TRUE@	test-ot-metrics-tt-var$(EXEEXT) \
 @HAVE_GLIB_TRUE@	test-set$(EXEEXT) test-shape$(EXEEXT) \
@@ -263,6 +266,12 @@ test_ot_alternates_LDADD = $(LDADD)
 @HAVE_GLIB_TRUE@test_ot_alternates_DEPENDENCIES =  \
 @HAVE_GLIB_TRUE@	$(top_builddir)/src/libharfbuzz.la \
 @HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1)
+test_ot_collect_glyphs_SOURCES = test-ot-collect-glyphs.c
+test_ot_collect_glyphs_OBJECTS = test-ot-collect-glyphs.$(OBJEXT)
+test_ot_collect_glyphs_LDADD = $(LDADD)
+@HAVE_GLIB_TRUE@test_ot_collect_glyphs_DEPENDENCIES =  \
+@HAVE_GLIB_TRUE@	$(top_builddir)/src/libharfbuzz.la \
+@HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1)
 test_ot_color_SOURCES = test-ot-color.c
 test_ot_color_OBJECTS = test-ot-color.$(OBJEXT)
 test_ot_color_LDADD = $(LDADD)
@@ -285,6 +294,12 @@ test_ot_glyphname_SOURCES = test-ot-glyphname.c
 test_ot_glyphname_OBJECTS = test-ot-glyphname.$(OBJEXT)
 test_ot_glyphname_LDADD = $(LDADD)
 @HAVE_GLIB_TRUE@test_ot_glyphname_DEPENDENCIES =  \
+@HAVE_GLIB_TRUE@	$(top_builddir)/src/libharfbuzz.la \
+@HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1)
+test_ot_layout_SOURCES = test-ot-layout.c
+test_ot_layout_OBJECTS = test-ot-layout.$(OBJEXT)
+test_ot_layout_LDADD = $(LDADD)
+@HAVE_GLIB_TRUE@test_ot_layout_DEPENDENCIES =  \
 @HAVE_GLIB_TRUE@	$(top_builddir)/src/libharfbuzz.la \
 @HAVE_GLIB_TRUE@	$(am__DEPENDENCIES_1)
 test_ot_ligature_carets_SOURCES = test-ot-ligature-carets.c
@@ -464,9 +479,10 @@ am__depfiles_remade = ./$(DEPDIR)/test-aat-layout.Po \
 	./$(DEPDIR)/test-common.Po ./$(DEPDIR)/test-draw.Po \
 	./$(DEPDIR)/test-font.Po ./$(DEPDIR)/test-map.Po \
 	./$(DEPDIR)/test-object.Po ./$(DEPDIR)/test-ot-alternates.Po \
+	./$(DEPDIR)/test-ot-collect-glyphs.Po \
 	./$(DEPDIR)/test-ot-color.Po \
 	./$(DEPDIR)/test-ot-extents-cff.Po ./$(DEPDIR)/test-ot-face.Po \
-	./$(DEPDIR)/test-ot-glyphname.Po \
+	./$(DEPDIR)/test-ot-glyphname.Po ./$(DEPDIR)/test-ot-layout.Po \
 	./$(DEPDIR)/test-ot-ligature-carets.Po \
 	./$(DEPDIR)/test-ot-meta.Po \
 	./$(DEPDIR)/test-ot-metrics-tt-var.Po \
@@ -534,8 +550,26 @@ SOURCES = test-aat-layout.c test-baseline.c test-blob.c test-buffer.c \
 	test-c.c test-collect-unicodes.c test-common.c \
 	$(test_cplusplus_SOURCES) test-draw.c test-font.c test-map.c \
 	test-multithread.c test-object.c test-ot-alternates.c \
-	test-ot-color.c test-ot-extents-cff.c test-ot-face.c \
-	test-ot-glyphname.c test-ot-ligature-carets.c test-ot-math.c \
+	test-ot-collect-glyphs.c test-ot-color.c test-ot-extents-cff.c \
+	test-ot-face.c test-ot-glyphname.c test-ot-layout.c \
+	test-ot-ligature-carets.c test-ot-math.c test-ot-meta.c \
+	test-ot-metrics.c test-ot-metrics-tt-var.c test-ot-name.c \
+	test-ot-tag.c test-set.c test-shape.c test-style.c \
+	test-subset.c test-subset-cbdt.c test-subset-cff1.c \
+	test-subset-cff2.c test-subset-cmap.c test-subset-colr.c \
+	test-subset-drop-tables.c test-subset-glyf.c \
+	test-subset-gpos.c test-subset-gvar.c test-subset-hdmx.c \
+	test-subset-hmtx.c test-subset-hvar.c test-subset-nameids.c \
+	test-subset-os2.c test-subset-post.c test-subset-sbix.c \
+	test-subset-vmtx.c test-subset-vvar.c test-unicode.c \
+	test-var-coords.c test-version.c
+DIST_SOURCES = test-aat-layout.c test-baseline.c test-blob.c \
+	test-buffer.c test-c.c test-collect-unicodes.c test-common.c \
+	$(am__test_cplusplus_SOURCES_DIST) test-draw.c test-font.c \
+	test-map.c test-multithread.c test-object.c \
+	test-ot-alternates.c test-ot-collect-glyphs.c test-ot-color.c \
+	test-ot-extents-cff.c test-ot-face.c test-ot-glyphname.c \
+	test-ot-layout.c test-ot-ligature-carets.c test-ot-math.c \
 	test-ot-meta.c test-ot-metrics.c test-ot-metrics-tt-var.c \
 	test-ot-name.c test-ot-tag.c test-set.c test-shape.c \
 	test-style.c test-subset.c test-subset-cbdt.c \
@@ -546,23 +580,6 @@ SOURCES = test-aat-layout.c test-baseline.c test-blob.c test-buffer.c \
 	test-subset-nameids.c test-subset-os2.c test-subset-post.c \
 	test-subset-sbix.c test-subset-vmtx.c test-subset-vvar.c \
 	test-unicode.c test-var-coords.c test-version.c
-DIST_SOURCES = test-aat-layout.c test-baseline.c test-blob.c \
-	test-buffer.c test-c.c test-collect-unicodes.c test-common.c \
-	$(am__test_cplusplus_SOURCES_DIST) test-draw.c test-font.c \
-	test-map.c test-multithread.c test-object.c \
-	test-ot-alternates.c test-ot-color.c test-ot-extents-cff.c \
-	test-ot-face.c test-ot-glyphname.c test-ot-ligature-carets.c \
-	test-ot-math.c test-ot-meta.c test-ot-metrics.c \
-	test-ot-metrics-tt-var.c test-ot-name.c test-ot-tag.c \
-	test-set.c test-shape.c test-style.c test-subset.c \
-	test-subset-cbdt.c test-subset-cff1.c test-subset-cff2.c \
-	test-subset-cmap.c test-subset-colr.c \
-	test-subset-drop-tables.c test-subset-glyf.c \
-	test-subset-gpos.c test-subset-gvar.c test-subset-hdmx.c \
-	test-subset-hmtx.c test-subset-hvar.c test-subset-nameids.c \
-	test-subset-os2.c test-subset-post.c test-subset-sbix.c \
-	test-subset-vmtx.c test-subset-vvar.c test-unicode.c \
-	test-var-coords.c test-version.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -809,6 +826,8 @@ CAIRO_LIBS = @CAIRO_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHAFA_CFLAGS = @CHAFA_CFLAGS@
+CHAFA_LIBS = @CHAFA_LIBS@
 CODE_COVERAGE_CFLAGS = @CODE_COVERAGE_CFLAGS@
 CODE_COVERAGE_CPPFLAGS = @CODE_COVERAGE_CPPFLAGS@
 CODE_COVERAGE_CXXFLAGS = @CODE_COVERAGE_CXXFLAGS@
@@ -837,8 +856,6 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
-FONTCONFIG_CFLAGS = @FONTCONFIG_CFLAGS@
-FONTCONFIG_LIBS = @FONTCONFIG_LIBS@
 FREETYPE_CFLAGS = @FREETYPE_CFLAGS@
 FREETYPE_DEPS = @FREETYPE_DEPS@
 FREETYPE_LIBS = @FREETYPE_LIBS@
@@ -997,22 +1014,24 @@ LINK = $(CXXLINK)
 @HAVE_GLIB_TRUE@	test-buffer test-c test-collect-unicodes \
 @HAVE_GLIB_TRUE@	test-cplusplus test-common test-draw test-font \
 @HAVE_GLIB_TRUE@	test-map test-object test-ot-alternates \
-@HAVE_GLIB_TRUE@	test-ot-color test-ot-face test-ot-glyphname \
-@HAVE_GLIB_TRUE@	test-ot-ligature-carets test-ot-name \
-@HAVE_GLIB_TRUE@	test-ot-meta test-ot-metrics test-ot-tag \
-@HAVE_GLIB_TRUE@	test-ot-extents-cff test-ot-metrics-tt-var \
-@HAVE_GLIB_TRUE@	test-set test-shape test-style test-subset \
-@HAVE_GLIB_TRUE@	test-subset-cmap test-subset-drop-tables \
-@HAVE_GLIB_TRUE@	test-subset-glyf test-subset-hdmx \
-@HAVE_GLIB_TRUE@	test-subset-hmtx test-subset-nameids \
-@HAVE_GLIB_TRUE@	test-subset-os2 test-subset-post \
-@HAVE_GLIB_TRUE@	test-subset-vmtx test-subset-cff1 \
-@HAVE_GLIB_TRUE@	test-subset-cff2 test-subset-gvar \
-@HAVE_GLIB_TRUE@	test-subset-hvar test-subset-vvar \
-@HAVE_GLIB_TRUE@	test-subset-sbix test-subset-gpos \
-@HAVE_GLIB_TRUE@	test-subset-colr test-subset-cbdt test-unicode \
-@HAVE_GLIB_TRUE@	test-var-coords test-version $(NULL) \
-@HAVE_GLIB_TRUE@	$(am__append_4) $(am__append_5)
+@HAVE_GLIB_TRUE@	test-ot-color test-ot-collect-glyphs \
+@HAVE_GLIB_TRUE@	test-ot-face test-ot-glyphname \
+@HAVE_GLIB_TRUE@	test-ot-ligature-carets test-ot-layout \
+@HAVE_GLIB_TRUE@	test-ot-name test-ot-meta test-ot-metrics \
+@HAVE_GLIB_TRUE@	test-ot-tag test-ot-extents-cff \
+@HAVE_GLIB_TRUE@	test-ot-metrics-tt-var test-set test-shape \
+@HAVE_GLIB_TRUE@	test-style test-subset test-subset-cmap \
+@HAVE_GLIB_TRUE@	test-subset-drop-tables test-subset-glyf \
+@HAVE_GLIB_TRUE@	test-subset-hdmx test-subset-hmtx \
+@HAVE_GLIB_TRUE@	test-subset-nameids test-subset-os2 \
+@HAVE_GLIB_TRUE@	test-subset-post test-subset-vmtx \
+@HAVE_GLIB_TRUE@	test-subset-cff1 test-subset-cff2 \
+@HAVE_GLIB_TRUE@	test-subset-gvar test-subset-hvar \
+@HAVE_GLIB_TRUE@	test-subset-vvar test-subset-sbix \
+@HAVE_GLIB_TRUE@	test-subset-gpos test-subset-colr \
+@HAVE_GLIB_TRUE@	test-subset-cbdt test-unicode test-var-coords \
+@HAVE_GLIB_TRUE@	test-version $(NULL) $(am__append_4) \
+@HAVE_GLIB_TRUE@	$(am__append_5)
 @HAVE_GLIB_TRUE@test_subset_LDADD = $(LDADD) $(top_builddir)/src/libharfbuzz-subset.la
 @HAVE_GLIB_TRUE@test_subset_cmap_LDADD = $(LDADD) $(top_builddir)/src/libharfbuzz-subset.la
 @HAVE_GLIB_TRUE@test_subset_drop_tables_LDADD = $(LDADD) $(top_builddir)/src/libharfbuzz-subset.la
@@ -1183,6 +1202,10 @@ test-ot-alternates$(EXEEXT): $(test_ot_alternates_OBJECTS) $(test_ot_alternates_
 	@rm -f test-ot-alternates$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(test_ot_alternates_OBJECTS) $(test_ot_alternates_LDADD) $(LIBS)
 
+test-ot-collect-glyphs$(EXEEXT): $(test_ot_collect_glyphs_OBJECTS) $(test_ot_collect_glyphs_DEPENDENCIES) $(EXTRA_test_ot_collect_glyphs_DEPENDENCIES) 
+	@rm -f test-ot-collect-glyphs$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(test_ot_collect_glyphs_OBJECTS) $(test_ot_collect_glyphs_LDADD) $(LIBS)
+
 test-ot-color$(EXEEXT): $(test_ot_color_OBJECTS) $(test_ot_color_DEPENDENCIES) $(EXTRA_test_ot_color_DEPENDENCIES) 
 	@rm -f test-ot-color$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(test_ot_color_OBJECTS) $(test_ot_color_LDADD) $(LIBS)
@@ -1198,6 +1221,10 @@ test-ot-face$(EXEEXT): $(test_ot_face_OBJECTS) $(test_ot_face_DEPENDENCIES) $(EX
 test-ot-glyphname$(EXEEXT): $(test_ot_glyphname_OBJECTS) $(test_ot_glyphname_DEPENDENCIES) $(EXTRA_test_ot_glyphname_DEPENDENCIES) 
 	@rm -f test-ot-glyphname$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(test_ot_glyphname_OBJECTS) $(test_ot_glyphname_LDADD) $(LIBS)
+
+test-ot-layout$(EXEEXT): $(test_ot_layout_OBJECTS) $(test_ot_layout_DEPENDENCIES) $(EXTRA_test_ot_layout_DEPENDENCIES) 
+	@rm -f test-ot-layout$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(test_ot_layout_OBJECTS) $(test_ot_layout_LDADD) $(LIBS)
 
 test-ot-ligature-carets$(EXEEXT): $(test_ot_ligature_carets_OBJECTS) $(test_ot_ligature_carets_DEPENDENCIES) $(EXTRA_test_ot_ligature_carets_DEPENDENCIES) 
 	@rm -f test-ot-ligature-carets$(EXEEXT)
@@ -1344,10 +1371,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-map.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-object.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-alternates.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-collect-glyphs.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-color.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-extents-cff.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-face.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-glyphname.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-layout.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-ligature-carets.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-meta.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test-ot-metrics-tt-var.Po@am__quote@ # am--include-marker
@@ -1799,6 +1828,13 @@ test-ot-color.log: test-ot-color$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
+test-ot-collect-glyphs.log: test-ot-collect-glyphs$(EXEEXT)
+	@p='test-ot-collect-glyphs$(EXEEXT)'; \
+	b='test-ot-collect-glyphs'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 test-ot-face.log: test-ot-face$(EXEEXT)
 	@p='test-ot-face$(EXEEXT)'; \
 	b='test-ot-face'; \
@@ -1816,6 +1852,13 @@ test-ot-glyphname.log: test-ot-glyphname$(EXEEXT)
 test-ot-ligature-carets.log: test-ot-ligature-carets$(EXEEXT)
 	@p='test-ot-ligature-carets$(EXEEXT)'; \
 	b='test-ot-ligature-carets'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+test-ot-layout.log: test-ot-layout$(EXEEXT)
+	@p='test-ot-layout$(EXEEXT)'; \
+	b='test-ot-layout'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -2158,10 +2201,12 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/test-map.Po
 	-rm -f ./$(DEPDIR)/test-object.Po
 	-rm -f ./$(DEPDIR)/test-ot-alternates.Po
+	-rm -f ./$(DEPDIR)/test-ot-collect-glyphs.Po
 	-rm -f ./$(DEPDIR)/test-ot-color.Po
 	-rm -f ./$(DEPDIR)/test-ot-extents-cff.Po
 	-rm -f ./$(DEPDIR)/test-ot-face.Po
 	-rm -f ./$(DEPDIR)/test-ot-glyphname.Po
+	-rm -f ./$(DEPDIR)/test-ot-layout.Po
 	-rm -f ./$(DEPDIR)/test-ot-ligature-carets.Po
 	-rm -f ./$(DEPDIR)/test-ot-meta.Po
 	-rm -f ./$(DEPDIR)/test-ot-metrics-tt-var.Po
@@ -2253,10 +2298,12 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/test-map.Po
 	-rm -f ./$(DEPDIR)/test-object.Po
 	-rm -f ./$(DEPDIR)/test-ot-alternates.Po
+	-rm -f ./$(DEPDIR)/test-ot-collect-glyphs.Po
 	-rm -f ./$(DEPDIR)/test-ot-color.Po
 	-rm -f ./$(DEPDIR)/test-ot-extents-cff.Po
 	-rm -f ./$(DEPDIR)/test-ot-face.Po
 	-rm -f ./$(DEPDIR)/test-ot-glyphname.Po
+	-rm -f ./$(DEPDIR)/test-ot-layout.Po
 	-rm -f ./$(DEPDIR)/test-ot-ligature-carets.Po
 	-rm -f ./$(DEPDIR)/test-ot-meta.Po
 	-rm -f ./$(DEPDIR)/test-ot-metrics-tt-var.Po
