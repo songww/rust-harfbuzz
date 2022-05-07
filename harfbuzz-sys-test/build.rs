@@ -1,5 +1,4 @@
 extern crate ctest;
-extern crate pkg_config;
 
 use std::env;
 
@@ -10,17 +9,12 @@ fn main() {
     if let Some(path) = &env::var_os("DEP_HARFBUZZ_INCLUDE") {
         // This comes from a static build in harfbuzz-sys.
         cfg.include(path);
-    } else if let Ok(lib) = pkg_config::probe_library("harfbuzz") {
-        // These come from pkg-config.
-        for path in lib.include_paths {
-            cfg.include(path);
-        }
     }
 
     // Include the header files where the C APIs are defined.
     cfg.header("hb.h").header("hb-ot.h").header("hb-aat.h");
 
-    if cfg!(target_os = "macos") {
+    if cfg!(target_vendor = "apple") {
         cfg.header("hb-coretext.h");
     }
 
@@ -45,5 +39,9 @@ fn main() {
 
     // Generate the tests, passing the path to the `*-sys` library as well as
     // the module to generate.
-    cfg.generate("../harfbuzz-sys/src/bindings.rs", "all.rs");
+    if let Ok(bindings) = &env::var("DEP_HARFBUZZ_BINDINGS") {
+        cfg.generate(&bindings, "all.rs");
+    } else {
+        cfg.generate("../harfbuzz-sys/src/bindings.rs", "all.rs");
+    }
 }

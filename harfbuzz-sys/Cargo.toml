@@ -20,13 +20,12 @@ exclude = [
 ]
 
 links = "harfbuzz"
-build = "build.rs"
 
 [build-dependencies]
 cc = { version = "1", optional = true }
 regex = { version = "1", optional = true }
 bindgen_ = { version = "0.59", optional = true, package = "bindgen" }
-pkg-config = { version = "0.3" }
+pkg-config = "0.3"
 
 [target.'cfg(target_vendor = "apple")'.dependencies]
 core-graphics = "0.22"
@@ -34,10 +33,9 @@ core-text = "19"
 foreign-types = "0.3"
 
 [target.'cfg(any(target_os = "android", all(unix, not(target_vendor = "apple"))))'.dependencies]
-freetype = { version = "0.7", default-features = false }
+freetype-sys = { version = "0.15", default-features = false }
 
 [features]
-default = ["build-native-harfbuzz", "build-native-freetype"]
+default = ["vendored"]
 bindgen = ["bindgen_", "regex"]
-build-native-harfbuzz = ["cc"]
-build-native-freetype = ["freetype/freetype-sys"]
+vendored = ["cc"]
