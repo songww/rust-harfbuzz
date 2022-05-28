@@ -207,11 +207,6 @@ fn vendored() {
     let out_dir = env::var("OUT_DIR").unwrap();
     let out_dir = PathBuf::from(out_dir);
 
-    let dep_vars = env::vars()
-        // .filter(|(name, _)| name.starts_with("DEP_"))
-        .collect::<Vec<_>>();
-    // println!("{:?}", dep_vars);
-
     let pkg_config_path = format!("PKG_CONFIG_PATH_{}", &target);
 
     let build_dir = out_dir.join("build");
