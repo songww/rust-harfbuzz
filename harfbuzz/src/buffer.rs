@@ -403,6 +403,7 @@ impl Buffer {
         unsafe { sys::hb_buffer_set_invisible_glyph(self.raw, invisible) };
     }
 
+    /* Since: 3.1.0
     pub fn not_found_glyph(&self) -> Codepoint {
         unsafe { sys::hb_buffer_get_not_found_glyph(self.raw) }
     }
@@ -410,6 +411,7 @@ impl Buffer {
     pub fn set_not_found_glyph(&mut self, not_found: Codepoint) {
         unsafe { sys::hb_buffer_set_not_found_glyph(self.raw, not_found) };
     }
+    */
 
     pub fn replacement_codepoint(&self) -> Codepoint {
         unsafe { sys::hb_buffer_get_replacement_codepoint(self.raw) }
