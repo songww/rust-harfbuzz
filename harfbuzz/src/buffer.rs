@@ -95,7 +95,11 @@ impl Buffer {
     }
 
     /// Borrows a raw pointer to the buffer.
-    pub fn as_ptr(&self) -> *mut sys::hb_buffer_t {
+    pub fn as_ptr(&self) -> *const sys::hb_buffer_t {
+        self.raw
+    }
+
+    pub fn as_mut_ptr(&self) -> *mut sys::hb_buffer_t {
         self.raw
     }
 

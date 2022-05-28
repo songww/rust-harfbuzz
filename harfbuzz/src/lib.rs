@@ -41,7 +41,24 @@ pub use self::font::Font;
 mod font_extents;
 pub use self::font_extents::FontExtents;
 
+mod feature;
+pub use self::feature::Feature;
+
 mod user_data;
 pub use self::user_data::UserDataKey;
 
+mod tag;
+pub use self::tag::Tag;
+
 pub type Codepoint = sys::hb_codepoint_t;
+
+pub fn shape(font: &mut Font, buf: &mut Buffer, features: &[Feature]) {
+    unsafe {
+        sys::hb_shape(
+            font.as_mut_ptr(),
+            buf.as_mut_ptr(),
+            features.as_ptr() as *const _,
+            features.len() as u32,
+        );
+    }
+}
