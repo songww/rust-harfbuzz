@@ -10,7 +10,65 @@
 use std;
 use sys;
 
+use crate::Codepoint;
+
 use {Direction, Language};
+
+#[derive(Clone, Copy)]
+#[repr(transparent)]
+pub struct GlyphInfo(sys::hb_glyph_info_t);
+impl GlyphInfo {
+    pub fn codepoint(&self) -> u32 {
+        self.0.codepoint
+    }
+    pub fn cluster(&self) -> u32 {
+        self.0.cluster
+    }
+    pub fn mask(&self) -> u32 {
+        self.0.mask
+    }
+}
+
+impl std::fmt::Debug for GlyphInfo {
+    fn fmt(&self, fmt: &mut std::fmt::Formatter) -> std::fmt::Result {
+        fmt.debug_struct("GlyphInfo")
+            .field("codepoint", &self.0.codepoint)
+            .field("cluster", &self.0.cluster)
+            .field("mask", &self.0.mask)
+            // .field("var1", &self.0.var1)
+            // .field("var2", &self.0.var2)
+            .finish()
+    }
+}
+
+#[derive(Clone, Copy)]
+#[repr(transparent)]
+pub struct GlyphPosition(sys::hb_glyph_position_t);
+impl GlyphPosition {
+    pub fn x_advance(&self) -> i32 {
+        self.0.x_advance
+    }
+    pub fn y_advance(&self) -> i32 {
+        self.0.y_advance
+    }
+    pub fn x_offset(&self) -> i32 {
+        self.0.x_offset
+    }
+    pub fn y_offset(&self) -> i32 {
+        self.0.y_offset
+    }
+}
+
+impl std::fmt::Debug for GlyphPosition {
+    fn fmt(&self, fmt: &mut std::fmt::Formatter) -> std::fmt::Result {
+        fmt.debug_struct("GlyphPosition")
+            .field("x_advance", &self.0.x_advance)
+            .field("y_advance", &self.0.y_advance)
+            .field("x_offset", &self.0.x_offset)
+            .field("y_offset", &self.0.y_offset)
+            .finish()
+    }
+}
 
 /// A series of Unicode characters.
 ///
@@ -301,6 +359,80 @@ impl Buffer {
     /// * [`set_language`](#method.set_language)
     pub fn get_language(&self) -> Language {
         unsafe { Language::from_raw(sys::hb_buffer_get_language(self.raw)) }
+    }
+
+    pub fn glyph_infos(&self) -> Vec<GlyphInfo> {
+        let mut infos: Vec<GlyphInfo> = Vec::new();
+        let mut count = 0;
+        unsafe {
+            let ptr = sys::hb_buffer_get_glyph_infos(self.raw, &mut count);
+            infos.reserve(count as usize);
+            std::ptr::copy_nonoverlapping(
+                ptr,
+                infos.as_mut_ptr() as *mut sys::hb_glyph_info_t,
+                count as usize,
+            );
+        }
+        infos
+    }
+
+    pub fn glyph_positions(&self) -> Vec<GlyphPosition> {
+        let mut positions: Vec<GlyphPosition> = Vec::new();
+        let mut count = 0;
+        unsafe {
+            let ptr = sys::hb_buffer_get_glyph_positions(self.raw, &mut count);
+            positions.reserve(count as usize);
+            std::ptr::copy_nonoverlapping(
+                ptr,
+                positions.as_mut_ptr() as *mut sys::hb_glyph_position_t,
+                count as usize,
+            );
+        }
+        positions
+    }
+
+    pub fn has_positions(&self) -> bool {
+        unsafe { sys::hb_buffer_has_positions(self.raw) != 0 }
+    }
+
+    pub fn invisible_glyph(&self) -> Codepoint {
+        unsafe { sys::hb_buffer_get_invisible_glyph(self.raw) }
+    }
+
+    pub fn set_invisible_glyph(&mut self, invisible: Codepoint) {
+        unsafe { sys::hb_buffer_set_invisible_glyph(self.raw, invisible) };
+    }
+
+    pub fn not_found_glyph(&self) -> Codepoint {
+        unsafe { sys::hb_buffer_get_not_found_glyph(self.raw) }
+    }
+
+    pub fn set_not_found_glyph(&mut self, not_found: Codepoint) {
+        unsafe { sys::hb_buffer_set_not_found_glyph(self.raw, not_found) };
+    }
+
+    pub fn replacement_codepoint(&self) -> Codepoint {
+        unsafe { sys::hb_buffer_get_replacement_codepoint(self.raw) }
+    }
+
+    pub fn set_replacement_codepoint(&mut self, replacement: Codepoint) {
+        unsafe { sys::hb_buffer_set_replacement_codepoint(self.raw, replacement) };
+    }
+
+    pub fn normalize_glyphs(&mut self) {
+        unsafe { sys::hb_buffer_normalize_glyphs(self.raw) };
+    }
+
+    pub fn reverse(&mut self) {
+        unsafe { sys::hb_buffer_reverse(self.raw) };
+    }
+
+    pub fn reverse_range(&mut self, start: u32, end: u32) {
+        unsafe { sys::hb_buffer_reverse_range(self.raw, start, end) };
+    }
+
+    pub fn reverse_clusters(&mut self) {
+        unsafe { sys::hb_buffer_reverse_clusters(self.raw) };
     }
 }
 
