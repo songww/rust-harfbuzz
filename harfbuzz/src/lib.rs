@@ -31,3 +31,17 @@ pub use self::language::Language;
 
 mod blob;
 pub use self::blob::Blob;
+
+mod face;
+pub use self::face::Face;
+
+mod font;
+pub use self::font::Font;
+
+mod font_extents;
+pub use self::font_extents::FontExtents;
+
+mod user_data;
+pub use self::user_data::UserDataKey;
+
+pub type Codepoint = sys::hb_codepoint_t;

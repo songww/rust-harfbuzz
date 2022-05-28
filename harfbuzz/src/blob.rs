@@ -104,6 +104,10 @@ impl<'a> Blob<'a> {
         self.len() == 0
     }
 
+    pub fn face_count(&self) -> usize {
+        unsafe { sys::hb_face_count(self.raw) as usize }
+    }
+
     /// Make this blob immutable.
     pub fn make_immutable(&mut self) {
         unsafe {

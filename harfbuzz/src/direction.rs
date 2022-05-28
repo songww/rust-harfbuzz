@@ -66,6 +66,16 @@ pub enum Direction {
     BTT,
 }
 
+impl Direction {
+    pub fn is_backward(&self) -> bool {
+        sys::hb_direction_t::from(*self) & !2 == 5
+    }
+
+    pub fn is_vertical(&self) -> bool {
+        sys::hb_direction_t::from(*self) & !1 == 6
+    }
+}
+
 impl From<sys::hb_direction_t> for Direction {
     fn from(s: sys::hb_direction_t) -> Self {
         match s {
