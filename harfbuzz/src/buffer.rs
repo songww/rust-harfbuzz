@@ -171,7 +171,7 @@ impl Buffer {
     /// Create a new buffer with the given text.
     pub fn with(text: &str) -> Self {
         let mut b = Buffer::new();
-        b.add_str(text);
+        b.add_str(text, 0, None);
         b
     }
 
@@ -183,14 +183,14 @@ impl Buffer {
     }
 
     /// Add UTF-8 encoded text to the buffer.
-    pub fn add_str(&mut self, text: &str) {
+    pub fn add_str(&mut self, text: &str, item_offset: usize, item_length: Option<usize>) {
         unsafe {
             sys::hb_buffer_add_utf8(
                 self.raw,
                 text.as_ptr() as *const std::os::raw::c_char,
                 text.len() as std::os::raw::c_int,
-                0,
-                text.len() as std::os::raw::c_int,
+                item_offset as std::os::raw::c_uint,
+                item_length.map(|l| l as std::os::raw::c_int).unwrap_or(-1),
             )
         };
     }
