@@ -361,6 +361,7 @@ impl Buffer {
         unsafe { Language::from_raw(sys::hb_buffer_get_language(self.raw)) }
     }
 
+    /// Get glyph informations for the buffer.
     pub fn glyph_infos(&self) -> Vec<GlyphInfo> {
         let mut infos: Vec<GlyphInfo> = Vec::new();
         let mut count = 0;
@@ -372,10 +373,12 @@ impl Buffer {
                 infos.as_mut_ptr() as *mut sys::hb_glyph_info_t,
                 count as usize,
             );
+            infos.set_len(count as usize);
         }
         infos
     }
 
+    /// Get glyph positions for the buffer.
     pub fn glyph_positions(&self) -> Vec<GlyphPosition> {
         let mut positions: Vec<GlyphPosition> = Vec::new();
         let mut count = 0;
@@ -387,18 +390,24 @@ impl Buffer {
                 positions.as_mut_ptr() as *mut sys::hb_glyph_position_t,
                 count as usize,
             );
+            positions.set_len(count as usize);
         }
         positions
     }
 
+    /// Whether buffer has glyph position data
     pub fn has_positions(&self) -> bool {
         unsafe { sys::hb_buffer_has_positions(self.raw) != 0 }
     }
 
+    /// The buffer invisible [hb_codepoint_t]
     pub fn invisible_glyph(&self) -> Codepoint {
         unsafe { sys::hb_buffer_get_invisible_glyph(self.raw) }
     }
 
+    /// Sets the hb_codepoint_t that replaces invisible characters in the shaping result.
+    /// If set to zero (default), the glyph for the U+0020 SPACE character is used.
+    /// Otherwise, this value is used verbatim.
     pub fn set_invisible_glyph(&mut self, invisible: Codepoint) {
         unsafe { sys::hb_buffer_set_invisible_glyph(self.raw, invisible) };
     }
