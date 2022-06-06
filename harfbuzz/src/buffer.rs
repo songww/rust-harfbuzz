@@ -412,6 +412,11 @@ impl Buffer {
         unsafe { sys::hb_buffer_set_invisible_glyph(self.raw, invisible) };
     }
 
+    /// Sets buffer flags to flags
+    pub fn set_flags(&mut self, flags: BufferFlags) {
+        unsafe { sys::hb_buffer_set_flags(self.raw, flags.bits()) };
+    }
+
     /* Since: 3.1.0
     pub fn not_found_glyph(&self) -> Codepoint {
         unsafe { sys::hb_buffer_get_not_found_glyph(self.raw) }
@@ -469,5 +474,26 @@ impl Default for Buffer {
 impl Drop for Buffer {
     fn drop(&mut self) {
         unsafe { sys::hb_buffer_destroy(self.raw) }
+    }
+}
+
+bitflags::bitflags! {
+    #[repr(transparent)]
+    pub struct BufferFlags: u32 {
+        const DEFAULT = sys::HB_BUFFER_FLAG_DEFAULT;
+        const BOT = sys::HB_BUFFER_FLAG_BOT;
+        const EOT = sys::HB_BUFFER_FLAG_EOT;
+        const PRESERVE_DEFAULT_IGNORABLES = sys::HB_BUFFER_FLAG_PRESERVE_DEFAULT_IGNORABLES;
+        const REMOVE_DEFAULT_IGNORABLES = sys::HB_BUFFER_FLAG_REMOVE_DEFAULT_IGNORABLES;
+        const DO_NOT_INSERT_DOTTED_CIRCLE = sys::HB_BUFFER_FLAG_DO_NOT_INSERT_DOTTED_CIRCLE;
+        // const VERIFY = sys::HB_BUFFER_FLAG_VERIFY;
+        // const PRODUCE_UNSAFE_TO_CONCAT = sys::HB_BUFFER_FLAG_PRODUCE_UNSAFE_TO_CONCAT;
+        // const DEFINED = sys::HB_BUFFER_FLAG_DEFINED;
+    }
+}
+
+impl Default for BufferFlags {
+    fn default() -> BufferFlags {
+        BufferFlags::DEFAULT
     }
 }
