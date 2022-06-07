@@ -39,11 +39,11 @@ impl Face {
         unsafe { sys::hb_face_get_upem(self.raw) }
     }
 
-    pub fn user_data<T>(&self, k: &UserDataKey<T>) -> Rc<T> {
+    pub fn user_data<T>(&self, _k: &UserDataKey<T>) -> Rc<T> {
         todo!()
     }
 
-    pub fn set_user_data<T>(&self, k: &UserDataKey<T>, v: Rc<T>) {
+    pub fn set_user_data<T>(&self, _k: &UserDataKey<T>, _v: Rc<T>) {
         todo!()
     }
 

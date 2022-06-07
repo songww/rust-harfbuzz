@@ -12,7 +12,7 @@
 use std;
 use sys;
 
-#[derive(Copy, Clone, PartialEq, PartialOrd)]
+#[derive(Copy, Clone, PartialEq, Eq, PartialOrd)]
 pub struct Language {
     /// The underlying `hb_language_t` from the `harfbuzz-sys` crate.
     ///

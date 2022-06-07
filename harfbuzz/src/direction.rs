@@ -32,7 +32,7 @@ use sys;
 /// [`harfbuzz-sys`]: ../harfbuzz_sys/index.html
 /// [`From`]: https://doc.rust-lang.org/std/convert/trait.From.html
 /// [`Into`]: https://doc.rust-lang.org/std/convert/trait.Into.html
-#[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd)]
 pub enum Direction {
     /// Initial, unset direction.
     ///
