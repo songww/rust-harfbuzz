@@ -94,6 +94,15 @@ impl<'a> Blob<'a> {
         }
     }
 
+    /// Fetches the data from this blob.
+    pub fn data(&self) -> &[u8] {
+        unsafe {
+            let mut length = 0;
+            let data = sys::hb_blob_get_data(self.raw, &mut length) as *const u8;
+            slice::from_raw_parts(data, length as usize)
+        }
+    }
+
     /// Returns the size of the blob in bytes.
     pub fn len(&self) -> usize {
         unsafe { sys::hb_blob_get_length(self.raw) as usize }
@@ -104,6 +113,7 @@ impl<'a> Blob<'a> {
         self.len() == 0
     }
 
+    /// Fetches the number of faces in a blob.
     pub fn face_count(&self) -> usize {
         unsafe { sys::hb_face_count(self.raw) as usize }
     }
