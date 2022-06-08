@@ -146,6 +146,11 @@ impl Font {
     pub fn as_mut_ptr(&mut self) -> *mut sys::hb_font_t {
         self.raw
     }
+
+    user_data_methods! {
+        sys::hb_font_get_user_data,
+        sys::hb_font_set_user_data,
+    }
 }
 
 impl Drop for Font {

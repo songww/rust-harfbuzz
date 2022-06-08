@@ -10,9 +10,7 @@
 use std;
 use sys;
 
-use crate::Codepoint;
-
-use {Direction, Language};
+use crate::{Codepoint, Direction, Language};
 
 #[derive(Clone, Copy)]
 #[repr(transparent)]

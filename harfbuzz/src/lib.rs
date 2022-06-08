@@ -20,35 +20,31 @@
 
 pub extern crate harfbuzz_sys as sys;
 
-mod buffer;
-pub use self::buffer::{Buffer, BufferFlags};
-
-mod direction;
-pub use self::direction::Direction;
-
-mod language;
-pub use self::language::Language;
+#[macro_use]
+mod user_data;
 
 mod blob;
-pub use self::blob::Blob;
-
+mod buffer;
+mod direction;
+mod errors;
 mod face;
-pub use self::face::Face;
-
-mod font;
-pub use self::font::Font;
-
-mod font_extents;
-pub use self::font_extents::FontExtents;
-
 mod feature;
-pub use self::feature::Feature;
-
-mod user_data;
-pub use self::user_data::UserDataKey;
-
+mod font;
+mod font_extents;
+mod language;
 mod tag;
-pub use self::tag::Tag;
+
+pub use blob::Blob;
+pub use buffer::{Buffer, BufferFlags};
+pub use direction::Direction;
+pub use errors::Error;
+pub use face::Face;
+pub use feature::Feature;
+pub use font::Font;
+pub use font_extents::FontExtents;
+pub use language::Language;
+pub use tag::Tag;
+pub use user_data::UserDataKey;
 
 /// Data type for holding Unicode codepoints. Also used to hold glyph IDs.
 pub type Codepoint = sys::hb_codepoint_t;
