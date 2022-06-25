@@ -6,7 +6,7 @@ edition = "2021"
 build = "build.rs"
 
 [dependencies]
-harfbuzz-sys = { path = "../harfbuzz-sys", default-features = false }
+harfbuzz-sys = { package = "songww-harfbuzz-sys", path = "../harfbuzz-sys", default-features = false }
 libc = "0.2"
 
 [build-dependencies]

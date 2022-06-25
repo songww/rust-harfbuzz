@@ -18,7 +18,7 @@
     unused_qualifications
 )]
 
-pub extern crate harfbuzz_sys as sys;
+pub use sys;
 
 #[macro_use]
 mod user_data;
@@ -40,7 +40,7 @@ pub use direction::Direction;
 pub use errors::Error;
 pub use face::Face;
 pub use feature::Feature;
-pub use font::Font;
+pub use font::{Font, FontMut};
 pub use font_extents::FontExtents;
 pub use language::Language;
 pub use tag::Tag;
@@ -58,8 +58,8 @@ pub fn shape(font: &Font, buf: &mut Buffer, features: &[Feature]) {
         sys::hb_shape(
             font.as_ptr() as *mut sys::hb_font_t,
             buf.as_mut_ptr(),
-            std::ptr::null(),
-            0,
+            features.as_ptr() as *mut sys::hb_feature_t,
+            features.len().try_into().unwrap(),
         );
     }
 }

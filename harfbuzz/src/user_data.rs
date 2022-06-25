@@ -100,7 +100,7 @@ macro_rules! user_data_methods {
         pub fn user_data_ptr<T: 'static>(
             &mut self,
             key: &'static mut crate::UserDataKey<T>,
-        ) -> Option<std::ptr::NonNull<T>> {
+        ) -> Option<::std::ptr::NonNull<T>> {
             // Safety:
             //
             // If `ffi_get_user_data` returns a non-null pointer,
@@ -123,7 +123,7 @@ macro_rules! user_data_methods {
             //   of the user data functionality, we consider this a misuse of an unsafe API.
             unsafe {
                 let ptr = $ffi_get_user_data(self.as_mut_ptr() as *mut _, &mut key.key);
-                Some(std::ptr::NonNull::new(ptr)?.cast())
+                Some(::std::ptr::NonNull::new(ptr)?.cast())
             }
         }
 
