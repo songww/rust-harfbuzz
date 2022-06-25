@@ -58,8 +58,8 @@ pub fn shape(font: &Font, buf: &mut Buffer, features: &[Feature]) {
         sys::hb_shape(
             font.as_ptr() as *mut sys::hb_font_t,
             buf.as_mut_ptr(),
-            features.as_ptr() as *const _,
-            features.len() as u32,
+            std::ptr::null(),
+            0,
         );
     }
 }

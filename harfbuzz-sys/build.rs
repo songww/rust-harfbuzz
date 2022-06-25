@@ -13,7 +13,7 @@ fn targetted_env_var(var_base: &str) -> Option<String> {
     match (env::var("TARGET"), env::var("HOST")) {
         (Ok(target), Ok(host)) => {
             let kind = if host == target { "HOST" } else { "TARGET" };
-            let target_u = target.replace("-", "_");
+            let target_u = target.replace('-', "_");
 
             env::var(&format!("{}_{}", var_base, target))
                 .or_else(|_| env::var(&format!("{}_{}", var_base, target_u)))

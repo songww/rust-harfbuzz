@@ -38,7 +38,7 @@ macro_rules! user_data_methods {
         /// Attach user data to `self` for the given `key`.
         pub fn set_user_data<T: 'static>(
             &mut self,
-            key: &'static crate::UserDataKey<T>,
+            key: &'static mut crate::UserDataKey<T>,
             value: std::rc::Rc<T>,
             replace: bool,
         ) -> Result<(), crate::Error> {
@@ -73,8 +73,8 @@ macro_rules! user_data_methods {
 
         /// Return the user data previously attached to `self` with the given `key`, if any.
         pub fn user_data<T: 'static>(
-            &self,
-            key: &'static crate::UserDataKey<T>,
+            &mut self,
+            key: &'static mut crate::UserDataKey<T>,
         ) -> Option<std::rc::Rc<T>> {
             let ptr = self.user_data_ptr(key)?.as_ptr();
 
@@ -98,8 +98,8 @@ macro_rules! user_data_methods {
         /// until the cairo object that `self` represents is destroyed
         /// or `remove_user_data` or `set_user_data` is called with the same key.
         pub fn user_data_ptr<T: 'static>(
-            &self,
-            key: &'static crate::UserDataKey<T>,
+            &mut self,
+            key: &'static mut crate::UserDataKey<T>,
         ) -> Option<std::ptr::NonNull<T>> {
             // Safety:
             //
@@ -122,10 +122,7 @@ macro_rules! user_data_methods {
             //   Since this involves a C (or FFI) call *and* is so far out of “typical” use
             //   of the user data functionality, we consider this a misuse of an unsafe API.
             unsafe {
-                let ptr = $ffi_get_user_data(
-                    self.as_ptr() as *const _ as *mut _,
-                    &key.key as *const _ as *mut _,
-                );
+                let ptr = $ffi_get_user_data(self.as_mut_ptr() as *mut _, &mut key.key);
                 Some(std::ptr::NonNull::new(ptr)?.cast())
             }
         }
