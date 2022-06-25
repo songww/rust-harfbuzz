@@ -254,6 +254,11 @@ fn vendored() {
     meson.arg("-Dicu=disabled");
     meson.arg("-Dicu_builtin=true");
 
+    meson.arg("-Ddocs=disabled");
+    meson.arg("-Dcairo=disabled");
+    meson.arg("-Dchafa=disabled");
+    meson.arg("-Dtests=disabled");
+
     if let Ok(freetype_dir) = env::var("DEP_FREETYPE_ROOT") {
         let libdir = targetted_env_var("PKG_CONFIG_PATH").unwrap_or_default();
         let mut libdir: Vec<_> = env::split_paths(&libdir).collect();

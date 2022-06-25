@@ -12,11 +12,21 @@ keywords = ["opentype", "font", "text", "layout", "unicode"]
 categories = ["external-ffi-bindings", "internationalization"]
 
 exclude = [
+    "harfbuzz/NEWS",
+    "harfbuzz/perf/*",
+    "harfbuzz/util/*.h",
+    "harfbuzz/util/*.hh",
+    "harfbuzz/util/*.c",
+    "harfbuzz/util/*.cc",
+    "harfbuzz/docs/*",
+    "harfbuzz/test/*",
+    "harfbuzz/test/api/fonts/*",
     "harfbuzz/test/subset/data/fonts/*",
     "harfbuzz/test/fuzzing/fonts/*",
-    "harfbuzz/test/shaping/data/text-rendering-tests/fonts/*",
-    "harfbuzz/test/shaping/data/aots/fonts/*",
-    "harfbuzz/test/shaping/data/in-house/fonts/*",
+    "harfbuzz/test/shape/data/text-rendering-tests/fonts/*",
+    "harfbuzz/test/shape/data/aots/fonts/*",
+    "harfbuzz/test/shape/data/in-house/fonts/*",
+    "harfbuzz/.git",
 ]
 
 links = "harfbuzz"
