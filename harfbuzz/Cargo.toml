@@ -1,14 +1,17 @@
 [package]
-name = "harfbuzz"
-version = "0.4.0"
+name = "harfbuzz-rs"
+version = "0.1.0"
 edition = "2021"
 authors = ["The Servo Project Developers"]
 license = "MIT / Apache-2.0"
 
 description = "Rust bindings to the HarfBuzz text shaping engine"
-repository = "https://github.com/servo/rust-harfbuzz"
-documentation = "https://docs.rs/harfbuzz/"
+repository = "https://github.com/songww/rust-harfbuzz"
+documentation = "https://docs.rs/harfbuzz-rs/"
 keywords = ["opentype", "font", "text", "layout", "unicode"]
+
+[lib]
+name = "harfbuzz"
 
 [dependencies]
 bitflags = "1.3"
@@ -16,8 +19,9 @@ thiserror = "1.0"
 
 [dependencies.harfbuzz-sys]
 path = "../harfbuzz-sys"
-version = "0.5.0"
+version = "0.1.0"
 default-features = false
+package = "songww-harfbuzz-sys"
 
 [features]
 default = ["vendored"]

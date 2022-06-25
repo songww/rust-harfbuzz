@@ -1,13 +1,13 @@
 [package]
-name = "harfbuzz-sys"
-version = "0.5.0"
+name = "songww-harfbuzz-sys"
+version = "0.1.0"
 
 authors = ["The Servo Project Developers"]
 license = "MIT"
 
 description = "Rust bindings to the HarfBuzz text shaping engine"
-repository = "https://github.com/servo/rust-harfbuzz"
-documentation = "https://docs.rs/harfbuzz-sys/"
+repository = "https://github.com/songww/rust-harfbuzz"
+documentation = "https://docs.rs/songww-harfbuzz-sys/"
 keywords = ["opentype", "font", "text", "layout", "unicode"]
 categories = ["external-ffi-bindings", "internationalization"]
 
@@ -21,10 +21,13 @@ exclude = [
 
 links = "harfbuzz"
 
+[lib]
+name = "harfbuzz_sys"
+
 [build-dependencies]
 cc = { version = "1", optional = true }
 regex = { version = "1", optional = true }
-bindgen_ = { version = "0.59", optional = true, package = "bindgen" }
+bindgen_ = { version = "0.60", optional = true, package = "bindgen" }
 pkg-config = "0.3"
 
 [target.'cfg(target_vendor = "apple")'.dependencies]
