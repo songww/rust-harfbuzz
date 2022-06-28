@@ -246,8 +246,18 @@ jobs:
           toolchain: stable
           override: true
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install meson ninja
+
       - name: Dependency install
-        run: vcpkg install --recurse glib:x64-windows fontconfig:x64-windows freetype:x64-windows cairo:x64-windows
+        run: |
+          vcpkg install --recurse \
+            glib:x64-windows \
+            fontconfig:x64-windows \
+            freetype:x64-windows \
+            cairo:x64-windows
 
       - name: Cargo build
         run: cargo build --all -v
