@@ -50,6 +50,6 @@ foreign-types = "0.3"
 freetype-sys = { version = "0.15", default-features = false }
 
 [features]
-default = ["vendored"]
+default = []
 bindgen = ["bindgen_", "regex"]
 vendored = ["cc"]

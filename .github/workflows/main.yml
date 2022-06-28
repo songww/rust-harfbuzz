@@ -186,6 +186,9 @@ jobs:
           toolchain: stable
           override: true
 
+      - name: install harfbuzz latest
+        run: brew install harfbuzz
+
       - name: Cargo build
         run: cargo build --all -v
 
