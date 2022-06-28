@@ -393,10 +393,10 @@ impl Buffer {
         positions
     }
 
-    /// Whether buffer has glyph position data
-    pub fn has_positions(&self) -> bool {
-        unsafe { sys::hb_buffer_has_positions(self.raw) != 0 }
-    }
+    // /// Whether buffer has glyph position data
+    // pub fn has_positions(&self) -> bool {
+    //     unsafe { sys::hb_buffer_has_positions(self.raw) != 0 }
+    // }
 
     /// The buffer invisible [hb_codepoint_t]
     pub fn invisible_glyph(&self) -> Codepoint {
