@@ -78,7 +78,7 @@ impl std::fmt::Debug for GlyphPosition {
 /// ```
 /// # use harfbuzz::Buffer;
 /// let mut b = Buffer::new();
-/// b.add_str("Hello World");
+/// b.add_str("Hello World", 0, None);
 /// assert_eq!(b.is_empty(), false);
 /// ```
 ///
