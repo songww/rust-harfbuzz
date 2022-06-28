@@ -310,7 +310,7 @@ fn probe() -> pkg_config::Library {
     config.statik(true);
     // #[cfg(all(not(feature = "bindgen"), not(feature = "vendored")))]
     #[cfg(not(feature = "bindgen"))]
-    config.range_version("4.3".."5.0");
+    config.range_version("4.4".."5.0");
     config.probe("harfbuzz").unwrap()
 }
 
