@@ -41,15 +41,15 @@ jobs:
           override: true
 
       - name: Cargo build
-        run: cargo build --all --no-default-features -v
+        run: cargo build --workspace
 
       - name: Cargo test
-        run: cargo test --all --no-default-features
+        run: cargo test --workspace
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml --no-default-features
+        run: cargo run --manifest-path=systest/Cargo.toml
 
   linux-ci-static-buildrs:
     name: stable, Linux, build by build.rs, static library, no pkg-config
@@ -75,15 +75,15 @@ jobs:
           sudo apt install ninja-build -y
 
       - name: Cargo build
-        run: cargo build --all -v
+        run: cargo build --workspace --features vendored
 
       - name: Cargo test
-        run: cargo test --all
+        run: cargo test --workspace --features vendored
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml
+        run: cargo run --manifest-path=systest/Cargo.toml --features vendored
 
   linux-ci-shared:
     name: stable, Linux, shared linking, no pkg-config
@@ -109,7 +109,8 @@ jobs:
           sudo pip install meson
           sudo apt update
           sudo apt install ninja-build -y
-          meson $RUNNER_TEMP/build harfbuzz-sys/harfbuzz \
+          meson $RUNNER_TEMP/build \
+            harfbuzz-sys/harfbuzz \
             --prefix $PREFIX \
             --libdir lib \
             --default-library shared \
@@ -126,18 +127,18 @@ jobs:
       # do this where the embedded harfbuzz is statically linked, but we don't
       # need to do it for every environment.
       - name: Cargo package
-        run: cargo package --manifest-path=harfbuzz-sys/Cargo.toml --no-default-features
+        run: cargo package --manifest-path=harfbuzz-sys/Cargo.toml
 
       - name: Cargo build
-        run: cargo build --all --no-default-features -v
+        run: cargo build --workspace
 
       - name: Cargo test
-        run: cargo test --all --no-default-features
+        run: cargo test --workspace
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml --no-default-features
+        run: cargo run --manifest-path=systest/Cargo.toml
 
   linux-ci-bindgen:
     name: stable, Linux, system pkg-config and bindgen
@@ -157,18 +158,21 @@ jobs:
           sudo apt install libharfbuzz-dev -y
 
       - name: Cargo package
-        run: cargo package --manifest-path=harfbuzz-sys/Cargo.toml --no-default-features --features bindgen
+        run: |
+          cargo package \
+            --manifest-path=harfbuzz-sys/Cargo.toml \
+            --features bindgen
 
       - name: Cargo build
-        run: cargo build --all --no-default-features --features bindgen -v
+        run: cargo build --workspace --features bindgen
 
       - name: Cargo test
-        run: cargo test --all --no-default-features --features bindgen
+        run: cargo test --workspace --features bindgen
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml --no-default-features --features bindgen
+        run: cargo run --manifest-path=systest/Cargo.toml --features bindgen
 
   mac-ci-shared:
     name: stable, macOS, shared library
@@ -190,10 +194,10 @@ jobs:
         run: brew install harfbuzz
 
       - name: Cargo build
-        run: cargo build --all -v
+        run: cargo build --workspace
 
       - name: Cargo test
-        run: cargo test --all
+        run: cargo test --workspace
         env:
           RUST_BACKTRACE: 1
 
@@ -220,15 +224,15 @@ jobs:
         run: brew install harfbuzz
 
       - name: Cargo build
-        run: cargo build --all --no-default-features --features bindgen -v
+        run: cargo build --workspace --features bindgen
 
       - name: Cargo test
-        run: cargo test --all --no-default-features --features bindgen
+        run: cargo test --workspace --features bindgen
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml --no-default-features --features bindgen
+        run: cargo run --manifest-path=systest/Cargo.toml --features bindgen
 
   windows-ci:
     name: Windows
@@ -245,27 +249,85 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - run: pip install meson ninja
+      #
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
+      - name: install meson
+        run: pip install meson ninja
 
       - name: Dependency install
         run: |
-          vcpkg install --recurse \
-            glib:x64-windows \
-            fontconfig:x64-windows \
-            freetype:x64-windows \
-            cairo:x64-windows
+          vcpkg install --recurse `
+            glib:x64-windows `
+            cairo:x64-windows `
+            pkgconf:x64-windows `
+            freetype:x64-windows `
+            fontconfig:x64-windows
 
       - name: Cargo build
-        run: cargo build --all -v
+        run: |
+          $env:PKG_CONFIG="$env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\tools\pkgconf\pkgconf.exe"
+          cargo build --workspace --features vendored
 
       - name: Cargo test
-        run: cargo test --all
+        run: |
+          $env:PKG_CONFIG="$env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\tools\pkgconf\pkgconf.exe"
+          cargo test --workspace --features vendored
         env:
           RUST_BACKTRACE: 1
+
+      - name: ctest tests
+        run: |
+          $env:PKG_CONFIG="$env:VCPKG_INSTALLATION_ROOT\installed\x64-windows\tools\pkgconf\pkgconf.exe"
+          cargo run --manifest-path=systest/Cargo.toml --features bindgen
+
+  windows-msys2-ci:
+    name: windows-msys2
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install nightly toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-rust
+            mingw-w64-x86_64-glib2
+            mingw-w64-x86_64-cairo
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-python
+            mingw-w64-x86_64-python-pip
+            mingw-w64-x86_64-freetype
+            mingw-w64-x86_64-fontconfig
+            mingw-w64-x86_64-pkg-config
+
+      - name: Cargo build
+        run: cargo build --workspace --features vendored
+
+      - name: Cargo test
+        run: cargo test --workspace --features vendored
+        env:
+          RUST_BACKTRACE: 1
+
+      - name: ctest tests
+        run: cargo run --manifest-path=systest/Cargo.toml --features bindgen
 
   build_result:
     name: homu build finished
@@ -278,6 +340,7 @@ jobs:
       - "mac-ci-shared"
       - "mac-ci-shared-bindgen-latest"
       - "windows-ci"
+      - "windows-msys2-ci"
 
     steps:
       - name: Mark the job as successful
