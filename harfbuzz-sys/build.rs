@@ -68,10 +68,10 @@ mod bindings {
         fn write(&mut self, buf: &[u8]) -> std::io::Result<usize> {
             let c = unsafe { std::str::from_utf8_unchecked(buf) };
             for line in c.lines() {
-                if !self.ignore.is_match(&line) {
-                    let rep = self.replacer.replacen(&line, 0, "${1}${2}");
-                    self.file.write(rep.as_bytes())?;
-                    self.file.write("\n".as_bytes())?;
+                if !self.ignore.is_match(line) {
+                    let rep = self.replacer.replacen(line, 0, "${1}${2}");
+                    self.file.write_all(rep.as_bytes())?;
+                    self.file.write_all("\n".as_bytes())?;
                 }
             }
             Ok(buf.len())
@@ -210,7 +210,10 @@ fn vendored() {
     let pkg_config_path = format!("PKG_CONFIG_PATH_{}", &target);
 
     let build_dir = out_dir.join("build");
-    let mut meson = Command::new("meson");
+
+    let mesonexe = which::which("meson").expect("meson not found, please install or add to `PATH`");
+
+    let mut meson = Command::new(&mesonexe);
     meson
         .arg("setup")
         .arg(&build_dir)
@@ -272,7 +275,7 @@ fn vendored() {
         failed(&cfgresult);
     }
 
-    let mut meson = Command::new("meson");
+    let mut meson = Command::new(mesonexe);
     let output = meson
         .args(&["compile", "-C"])
         .arg(&build_dir)

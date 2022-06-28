@@ -36,6 +36,7 @@ name = "harfbuzz_sys"
 
 [build-dependencies]
 cc = { version = "1", optional = true }
+which = { version = '4.2' }
 regex = { version = "1", optional = true }
 bindgen_ = { version = "0.60", optional = true, package = "bindgen" }
 pkg-config = "0.3"
