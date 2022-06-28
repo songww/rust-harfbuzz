@@ -1,0 +1,18 @@
+[package]
+name = "harfbuzz-sys-test"
+version = "0.1.0"
+authors = ["Sean Leather <sean.leather@gmail.com>"]
+edition = "2021"
+build = "build.rs"
+
+[dependencies]
+harfbuzz-sys = { package = "songww-harfbuzz-sys", path = "../harfbuzz-sys", default-features = false }
+libc = "0.2"
+
+[build-dependencies]
+ctest = { package = "ctest2", version = "0.4" }
+
+[features]
+default = ["vendored"]
+bindgen = ["harfbuzz-sys/bindgen"]
+vendored = ["harfbuzz-sys/vendored"]

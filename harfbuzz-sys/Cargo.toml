@@ -1,30 +1,45 @@
 [package]
-name = "harfbuzz-sys"
-version = "0.5.0"
+name = "songww-harfbuzz-sys"
+version = "0.2.0"
 
 authors = ["The Servo Project Developers"]
 license = "MIT"
 
 description = "Rust bindings to the HarfBuzz text shaping engine"
-repository = "https://github.com/servo/rust-harfbuzz"
-documentation = "https://docs.rs/harfbuzz-sys/"
+repository = "https://github.com/songww/rust-harfbuzz"
+documentation = "https://docs.rs/songww-harfbuzz-sys/"
 keywords = ["opentype", "font", "text", "layout", "unicode"]
 categories = ["external-ffi-bindings", "internationalization"]
 
 exclude = [
+    "harfbuzz/NEWS",
+    "harfbuzz/perf/*",
+    "harfbuzz/util/*.h",
+    "harfbuzz/util/*.hh",
+    "harfbuzz/util/*.c",
+    "harfbuzz/util/*.cc",
+    "harfbuzz/docs/*",
+    "harfbuzz/test/*",
+    "harfbuzz/test/api/fonts/*",
     "harfbuzz/test/subset/data/fonts/*",
     "harfbuzz/test/fuzzing/fonts/*",
-    "harfbuzz/test/shaping/data/text-rendering-tests/fonts/*",
-    "harfbuzz/test/shaping/data/aots/fonts/*",
-    "harfbuzz/test/shaping/data/in-house/fonts/*",
+    "harfbuzz/test/shape/data/text-rendering-tests/fonts/*",
+    "harfbuzz/test/shape/data/aots/fonts/*",
+    "harfbuzz/test/shape/data/in-house/fonts/*",
+    "harfbuzz/.git",
 ]
 
 links = "harfbuzz"
-build = "build.rs"
+
+[lib]
+name = "harfbuzz_sys"
 
 [build-dependencies]
-pkg-config = { version = "0.3", optional = true }
 cc = { version = "1", optional = true }
+which = { version = '4.2' }
+regex = { version = "1", optional = true }
+bindgen_ = { version = "0.60", optional = true, package = "bindgen" }
+pkg-config = "0.3"
 
 [target.'cfg(target_vendor = "apple")'.dependencies]
 core-graphics = "0.22"
@@ -32,9 +47,9 @@ core-text = "19"
 foreign-types = "0.3"
 
 [target.'cfg(any(target_os = "android", all(unix, not(target_vendor = "apple"))))'.dependencies]
-freetype = { version = "0.7", default-features = false }
+freetype-sys = { version = "0.15", default-features = false }
 
 [features]
-default = ["build-native-harfbuzz", "build-native-freetype"]
-build-native-harfbuzz = ["cc", "pkg-config"]
-build-native-freetype = ["freetype/freetype-sys"]
+default = []
+bindgen = ["bindgen_", "regex"]
+vendored = ["cc"]

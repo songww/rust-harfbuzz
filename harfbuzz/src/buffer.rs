@@ -10,7 +10,63 @@
 use std;
 use sys;
 
-use {Direction, Language};
+use crate::{Codepoint, Direction, Language};
+
+#[derive(Clone, Copy)]
+#[repr(transparent)]
+pub struct GlyphInfo(sys::hb_glyph_info_t);
+impl GlyphInfo {
+    pub fn codepoint(&self) -> u32 {
+        self.0.codepoint
+    }
+    pub fn cluster(&self) -> u32 {
+        self.0.cluster
+    }
+    pub fn mask(&self) -> u32 {
+        self.0.mask
+    }
+}
+
+impl std::fmt::Debug for GlyphInfo {
+    fn fmt(&self, fmt: &mut std::fmt::Formatter) -> std::fmt::Result {
+        fmt.debug_struct("GlyphInfo")
+            .field("codepoint", &self.0.codepoint)
+            .field("cluster", &self.0.cluster)
+            .field("mask", &self.0.mask)
+            // .field("var1", &self.0.var1)
+            // .field("var2", &self.0.var2)
+            .finish()
+    }
+}
+
+#[derive(Clone, Copy)]
+#[repr(transparent)]
+pub struct GlyphPosition(sys::hb_glyph_position_t);
+impl GlyphPosition {
+    pub fn x_advance(&self) -> i32 {
+        self.0.x_advance
+    }
+    pub fn y_advance(&self) -> i32 {
+        self.0.y_advance
+    }
+    pub fn x_offset(&self) -> i32 {
+        self.0.x_offset
+    }
+    pub fn y_offset(&self) -> i32 {
+        self.0.y_offset
+    }
+}
+
+impl std::fmt::Debug for GlyphPosition {
+    fn fmt(&self, fmt: &mut std::fmt::Formatter) -> std::fmt::Result {
+        fmt.debug_struct("GlyphPosition")
+            .field("x_advance", &self.0.x_advance)
+            .field("y_advance", &self.0.y_advance)
+            .field("x_offset", &self.0.x_offset)
+            .field("y_offset", &self.0.y_offset)
+            .finish()
+    }
+}
 
 /// A series of Unicode characters.
 ///
@@ -22,7 +78,7 @@ use {Direction, Language};
 /// ```
 /// # use harfbuzz::Buffer;
 /// let mut b = Buffer::new();
-/// b.add_str("Hello World");
+/// b.add_str("Hello World", 0, None);
 /// assert_eq!(b.is_empty(), false);
 /// ```
 ///
@@ -95,7 +151,11 @@ impl Buffer {
     }
 
     /// Borrows a raw pointer to the buffer.
-    pub fn as_ptr(&self) -> *mut sys::hb_buffer_t {
+    pub fn as_ptr(&self) -> *const sys::hb_buffer_t {
+        self.raw
+    }
+
+    pub fn as_mut_ptr(&self) -> *mut sys::hb_buffer_t {
         self.raw
     }
 
@@ -109,7 +169,7 @@ impl Buffer {
     /// Create a new buffer with the given text.
     pub fn with(text: &str) -> Self {
         let mut b = Buffer::new();
-        b.add_str(text);
+        b.add_str(text, 0, None);
         b
     }
 
@@ -121,14 +181,14 @@ impl Buffer {
     }
 
     /// Add UTF-8 encoded text to the buffer.
-    pub fn add_str(&mut self, text: &str) {
+    pub fn add_str(&mut self, text: &str, start_at: usize, length: Option<usize>) {
         unsafe {
             sys::hb_buffer_add_utf8(
                 self.raw,
                 text.as_ptr() as *const std::os::raw::c_char,
                 text.len() as std::os::raw::c_int,
-                0,
-                text.len() as std::os::raw::c_int,
+                start_at as std::os::raw::c_uint,
+                length.map(|l| l as std::os::raw::c_int).unwrap_or(-1),
             )
         };
     }
@@ -298,6 +358,96 @@ impl Buffer {
     pub fn get_language(&self) -> Language {
         unsafe { Language::from_raw(sys::hb_buffer_get_language(self.raw)) }
     }
+
+    /// Get glyph informations for the buffer.
+    pub fn glyph_infos(&self) -> Vec<GlyphInfo> {
+        let mut infos: Vec<GlyphInfo> = Vec::new();
+        let mut count = 0;
+        unsafe {
+            let ptr = sys::hb_buffer_get_glyph_infos(self.raw, &mut count);
+            infos.reserve(count as usize);
+            std::ptr::copy_nonoverlapping(
+                ptr,
+                infos.as_mut_ptr() as *mut sys::hb_glyph_info_t,
+                count as usize,
+            );
+            infos.set_len(count as usize);
+        }
+        infos
+    }
+
+    /// Get glyph positions for the buffer.
+    pub fn glyph_positions(&self) -> Vec<GlyphPosition> {
+        let mut positions: Vec<GlyphPosition> = Vec::new();
+        let mut count = 0;
+        unsafe {
+            let ptr = sys::hb_buffer_get_glyph_positions(self.raw, &mut count);
+            positions.reserve(count as usize);
+            std::ptr::copy_nonoverlapping(
+                ptr,
+                positions.as_mut_ptr() as *mut sys::hb_glyph_position_t,
+                count as usize,
+            );
+            positions.set_len(count as usize);
+        }
+        positions
+    }
+
+    // /// Whether buffer has glyph position data
+    // pub fn has_positions(&self) -> bool {
+    //     unsafe { sys::hb_buffer_has_positions(self.raw) != 0 }
+    // }
+
+    /// The buffer invisible [hb_codepoint_t]
+    pub fn invisible_glyph(&self) -> Codepoint {
+        unsafe { sys::hb_buffer_get_invisible_glyph(self.raw) }
+    }
+
+    /// Sets the hb_codepoint_t that replaces invisible characters in the shaping result.
+    /// If set to zero (default), the glyph for the U+0020 SPACE character is used.
+    /// Otherwise, this value is used verbatim.
+    pub fn set_invisible_glyph(&mut self, invisible: Codepoint) {
+        unsafe { sys::hb_buffer_set_invisible_glyph(self.raw, invisible) };
+    }
+
+    /// Sets buffer flags to flags
+    pub fn set_flags(&mut self, flags: BufferFlags) {
+        unsafe { sys::hb_buffer_set_flags(self.raw, flags.bits()) };
+    }
+
+    /* Since: 3.1.0
+    pub fn not_found_glyph(&self) -> Codepoint {
+        unsafe { sys::hb_buffer_get_not_found_glyph(self.raw) }
+    }
+
+    pub fn set_not_found_glyph(&mut self, not_found: Codepoint) {
+        unsafe { sys::hb_buffer_set_not_found_glyph(self.raw, not_found) };
+    }
+    */
+
+    pub fn replacement_codepoint(&self) -> Codepoint {
+        unsafe { sys::hb_buffer_get_replacement_codepoint(self.raw) }
+    }
+
+    pub fn set_replacement_codepoint(&mut self, replacement: Codepoint) {
+        unsafe { sys::hb_buffer_set_replacement_codepoint(self.raw, replacement) };
+    }
+
+    pub fn normalize_glyphs(&mut self) {
+        unsafe { sys::hb_buffer_normalize_glyphs(self.raw) };
+    }
+
+    pub fn reverse(&mut self) {
+        unsafe { sys::hb_buffer_reverse(self.raw) };
+    }
+
+    pub fn reverse_range(&mut self, start: u32, end: u32) {
+        unsafe { sys::hb_buffer_reverse_range(self.raw, start, end) };
+    }
+
+    pub fn reverse_clusters(&mut self) {
+        unsafe { sys::hb_buffer_reverse_clusters(self.raw) };
+    }
 }
 
 impl std::fmt::Debug for Buffer {
@@ -322,5 +472,26 @@ impl Default for Buffer {
 impl Drop for Buffer {
     fn drop(&mut self) {
         unsafe { sys::hb_buffer_destroy(self.raw) }
+    }
+}
+
+bitflags::bitflags! {
+    #[repr(transparent)]
+    pub struct BufferFlags: u32 {
+        const DEFAULT = sys::HB_BUFFER_FLAG_DEFAULT;
+        const BOT = sys::HB_BUFFER_FLAG_BOT;
+        const EOT = sys::HB_BUFFER_FLAG_EOT;
+        const PRESERVE_DEFAULT_IGNORABLES = sys::HB_BUFFER_FLAG_PRESERVE_DEFAULT_IGNORABLES;
+        const REMOVE_DEFAULT_IGNORABLES = sys::HB_BUFFER_FLAG_REMOVE_DEFAULT_IGNORABLES;
+        const DO_NOT_INSERT_DOTTED_CIRCLE = sys::HB_BUFFER_FLAG_DO_NOT_INSERT_DOTTED_CIRCLE;
+        // const VERIFY = sys::HB_BUFFER_FLAG_VERIFY;
+        // const PRODUCE_UNSAFE_TO_CONCAT = sys::HB_BUFFER_FLAG_PRODUCE_UNSAFE_TO_CONCAT;
+        // const DEFINED = sys::HB_BUFFER_FLAG_DEFINED;
+    }
+}
+
+impl Default for BufferFlags {
+    fn default() -> BufferFlags {
+        BufferFlags::DEFAULT
     }
 }

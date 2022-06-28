@@ -32,7 +32,7 @@ use sys;
 /// [`harfbuzz-sys`]: ../harfbuzz_sys/index.html
 /// [`From`]: https://doc.rust-lang.org/std/convert/trait.From.html
 /// [`Into`]: https://doc.rust-lang.org/std/convert/trait.Into.html
-#[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd)]
 pub enum Direction {
     /// Initial, unset direction.
     ///
@@ -64,6 +64,16 @@ pub enum Direction {
     ///
     /// [`HB_DIRECTION_BTT`]: ../harfbuzz_sys/constant.HB_DIRECTION_BTT.html
     BTT,
+}
+
+impl Direction {
+    pub fn is_backward(&self) -> bool {
+        sys::hb_direction_t::from(*self) & !2 == 5
+    }
+
+    pub fn is_vertical(&self) -> bool {
+        sys::hb_direction_t::from(*self) & !1 == 6
+    }
 }
 
 impl From<sys::hb_direction_t> for Direction {

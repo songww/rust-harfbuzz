@@ -16,3 +16,7 @@ extern "C" {
     pub fn hb_coretext_face_get_cg_font(face: *mut hb_face_t) -> CGFontRef;
     pub fn hb_coretext_font_get_ct_font(font: *mut hb_font_t) -> CTFontRef;
 }
+
+const HB_CORETEXT_TAG_KERX: crate::hb_tag_t = crate::hb_tag(b'k', b'e', b'r', b'x');
+const HB_CORETEXT_TAG_MORT: crate::hb_tag_t = crate::hb_tag(b'm', b'o', b'r', b't');
+const HB_CORETEXT_TAG_MORX: crate::hb_tag_t = crate::hb_tag(b'm', b'o', b'r', b'x');
