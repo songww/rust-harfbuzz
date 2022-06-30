@@ -1,3 +1,5 @@
+#![cfg_attr(dox, feature(doc_cfg))]
+
 #[cfg(target_vendor = "apple")]
 pub mod coretext;
 

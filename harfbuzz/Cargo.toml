@@ -24,6 +24,25 @@ default-features = false
 package = "songww-harfbuzz-sys"
 
 [features]
-default = []
+default = ["sys/v2_2"]
+
+v2_2 = []
+v2_5_3 = ["sys/v2_2"]
+v2_6_8 = ["sys/v2_5_3"]
+v2_7_4 = ["sys/v2_6_8"]
+v2_8_2 = ["sys/v2_7_4"]
+v2_9 = ["sys/v2_8_2"]
+v3_0 = ["sys/v2_9"]
+v3_1 = ["sys/v3_0"]
+v3_2 = ["sys/v3_1"]
+v3_3 = ["sys/v3_2"]
+v3_4 = ["sys/v3_3"]
+v4_0 = ["sys/v3_4"]
+v4_1 = ["sys/v4_0"]
+v4_2 = ["sys/v4_1"]
+v4_3 = ["sys/v4_2"]
+v4_4 = ["sys/v4_3"]
+dox = ["sys/v4_4"]
+
 bindgen = ["sys/bindgen"]
 vendored = ["sys/vendored"]
