@@ -13,6 +13,6 @@ libc = "0.2"
 ctest = { package = "ctest2", version = "0.4" }
 
 [features]
-default = ["vendored"]
+default = []
 bindgen = ["harfbuzz-sys/bindgen"]
 vendored = ["harfbuzz-sys/vendored"]
