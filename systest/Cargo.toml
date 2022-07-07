@@ -13,6 +13,24 @@ libc = "0.2"
 ctest = { package = "ctest2", version = "0.4" }
 
 [features]
-default = []
+default = ["harfbuzz-sys/v2_2"]
+
+v2_2 = []
+v2_5_3 = ["harfbuzz-sys/v2_2"]
+v2_6_8 = ["harfbuzz-sys/v2_5_3"]
+v2_7_4 = ["harfbuzz-sys/v2_6_8"]
+v2_8_2 = ["harfbuzz-sys/v2_7_4"]
+v2_9 = ["harfbuzz-sys/v2_8_2"]
+v3_0 = ["harfbuzz-sys/v2_9"]
+v3_1 = ["harfbuzz-sys/v3_0"]
+v3_2 = ["harfbuzz-sys/v3_1"]
+v3_3 = ["harfbuzz-sys/v3_2"]
+v3_4 = ["harfbuzz-sys/v3_3"]
+v4_0 = ["harfbuzz-sys/v3_4"]
+v4_1 = ["harfbuzz-sys/v4_0"]
+v4_2 = ["harfbuzz-sys/v4_1"]
+v4_3 = ["harfbuzz-sys/v4_2"]
+v4_4 = ["harfbuzz-sys/v4_3"]
+
 bindgen = ["harfbuzz-sys/bindgen"]
 vendored = ["harfbuzz-sys/vendored"]

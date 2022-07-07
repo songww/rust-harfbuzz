@@ -40,7 +40,7 @@ mod bindings {
     use std::io::prelude::*;
     use std::path::{Path, PathBuf};
 
-    static HEADER: &'static str = r#"#include "hb.h"
+    static HEADER: &str = r#"#include "hb.h"
 #include "hb-ot.h"
 #include "hb-aat.h""#;
 
@@ -313,11 +313,51 @@ fn probe() -> pkg_config::Library {
     config.statik(true);
     // #[cfg(all(not(feature = "bindgen"), not(feature = "vendored")))]
     #[cfg(not(feature = "bindgen"))]
-    config.range_version("4.4".."5.0");
+    {
+        cfg_if::cfg_if! {
+            if #[cfg(feature = "v4_4")] {
+                let versions = "4.4".."5.0";
+            } else if #[cfg(feature = "v4_3")] {
+                let versions = "4.3".."5.0";
+            } else if #[cfg(feature = "v4_2")] {
+                let versions = "4.2".."5.0";
+            } else if #[cfg(feature = "v4_1")] {
+                let versions = "4.1".."5.0";
+            } else if #[cfg(feature = "v4_0")] {
+                let versions = "4.0".."5.0";
+            } else if #[cfg(feature = "v3_4")] {
+                let versions = "3.4".."4.0";
+            } else if #[cfg(feature = "v3_3")] {
+                let versions = "3.3".."4.0";
+            } else if #[cfg(feature = "v3_2")] {
+                let versions = "3.2".."4.0";
+            } else if #[cfg(feature = "v3_1")] {
+                let versions = "3.1".."4.0";
+            } else if #[cfg(feature = "v3_0")] {
+                let versions = "3.0".."4.0";
+            } else if #[cfg(feature = "v2_9")] {
+                let versions = "2.9".."3.0";
+            } else if #[cfg(feature = "v2_8_2")] {
+                let versions = "2.8.2".."3.0";
+            } else if #[cfg(feature = "v2_7_4")] {
+                let versions = "2.7.4".."3.0";
+            } else if #[cfg(feature = "v2_6_8")] {
+                let versions = "2.6.8".."3.0";
+            } else if #[cfg(feature = "v2_5_3")] {
+                let versions = "2.5.3".."3.0";
+            } else {
+                let versions = "2.2".."3.0";
+            }
+        };
+        config.range_version(versions);
+    }
     config.probe("harfbuzz").unwrap()
 }
 
 fn main() {
+    if cfg!(feature = "dox") {
+        println!("cargo:rustc-cfg=dox")
+    }
     #[cfg(feature = "vendored")]
     vendored();
 

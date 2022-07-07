@@ -149,6 +149,8 @@ fn bindgen_test_layout__hb_var_int_t() {
     test_field_i8();
 }
 pub type hb_var_int_t = _hb_var_int_t;
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union _hb_var_num_t {
@@ -160,6 +162,7 @@ pub union _hb_var_num_t {
     pub u8: [u8; 4usize],
     pub i8: [i8; 4usize],
 }
+#[cfg(feature = "v4_0")]
 #[test]
 fn bindgen_test_layout__hb_var_num_t() {
     assert_eq!(
@@ -292,6 +295,8 @@ fn bindgen_test_layout__hb_var_num_t() {
     }
     test_field_i8();
 }
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub type hb_var_num_t = _hb_var_num_t;
 #[doc = " hb_tag_t:"]
 #[doc = ""]
@@ -516,15 +521,35 @@ pub const HB_SCRIPT_ELYMAIC: hb_script_t = 1164736877;
 pub const HB_SCRIPT_NANDINAGARI: hb_script_t = 1315008100;
 pub const HB_SCRIPT_NYIAKENG_PUACHUE_HMONG: hb_script_t = 1215131248;
 pub const HB_SCRIPT_WANCHO: hb_script_t = 1466132591;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_SCRIPT_CHORASMIAN: hb_script_t = 1130918515;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_SCRIPT_DIVES_AKURU: hb_script_t = 1147756907;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_SCRIPT_KHITAN_SMALL_SCRIPT: hb_script_t = 1265202291;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_SCRIPT_YEZIDI: hb_script_t = 1499822697;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_SCRIPT_CYPRO_MINOAN: hb_script_t = 1131441518;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_SCRIPT_OLD_UYGHUR: hb_script_t = 1333094258;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_SCRIPT_TANGSA: hb_script_t = 1416524641;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_SCRIPT_TOTO: hb_script_t = 1416590447;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_SCRIPT_VITHKUQI: hb_script_t = 1449751656;
+#[cfg(any(feature = "v3_4", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_4")))]
 pub const HB_SCRIPT_MATH: hb_script_t = 1517122664;
 pub const HB_SCRIPT_INVALID: hb_script_t = 0;
 pub const _HB_SCRIPT_MAX_VALUE: hb_script_t = 2147483647;
@@ -1021,6 +1046,8 @@ extern "C" {
     ) -> *mut hb_blob_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_8_2", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_8_2")))]
     pub fn hb_blob_create_or_fail(
         data: *const ::std::os::raw::c_char,
         length: ::std::os::raw::c_uint,
@@ -1033,6 +1060,8 @@ extern "C" {
     pub fn hb_blob_create_from_file(file_name: *const ::std::os::raw::c_char) -> *mut hb_blob_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_8_2", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_8_2")))]
     pub fn hb_blob_create_from_file_or_fail(
         file_name: *const ::std::os::raw::c_char,
     ) -> *mut hb_blob_t;
@@ -1674,6 +1703,8 @@ extern "C" {
     pub fn hb_set_allocation_successful(set: *const hb_set_t) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_8_2", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_8_2")))]
     pub fn hb_set_copy(set: *const hb_set_t) -> *mut hb_set_t;
 }
 extern "C" {
@@ -1695,6 +1726,8 @@ extern "C" {
     pub fn hb_set_add_range(set: *mut hb_set_t, first: hb_codepoint_t, last: hb_codepoint_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_1", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_1")))]
     pub fn hb_set_add_sorted_array(
         set: *mut hb_set_t,
         sorted_codepoints: *const hb_codepoint_t,
@@ -1711,6 +1744,8 @@ extern "C" {
     pub fn hb_set_is_equal(set: *const hb_set_t, other: *const hb_set_t) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_4")))]
     pub fn hb_set_hash(set: *const hb_set_t) -> ::std::os::raw::c_uint;
 }
 extern "C" {
@@ -1761,6 +1796,8 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_2", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_2")))]
     pub fn hb_set_next_many(
         set: *const hb_set_t,
         codepoint: hb_codepoint_t,
@@ -1822,6 +1859,13 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* face mut since 4.4.0
+    pub fn hb_face_get_user_data(
+        face: *const hb_face_t,
+        key: *mut hb_user_data_key_t,
+    ) -> *mut ::std::os::raw::c_void;
+    #[cfg(not(feature = "v4_4"))]
     pub fn hb_face_get_user_data(
         face: *mut hb_face_t,
         key: *mut hb_user_data_key_t,
@@ -1888,6 +1932,8 @@ extern "C" {
         blob: *mut hb_blob_t,
     ) -> hb_bool_t;
 }
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 #[doc = " hb_draw_state_t"]
 #[doc = " @path_open: Whether there is an open path"]
 #[doc = " @path_start_x: X component of the start of current path"]
@@ -1914,6 +1960,7 @@ pub struct hb_draw_state_t {
     pub reserved6: hb_var_num_t,
     pub reserved7: hb_var_num_t,
 }
+#[cfg(feature = "v4_0")]
 #[test]
 fn bindgen_test_layout_hb_draw_state_t() {
     assert_eq!(
@@ -2131,6 +2178,8 @@ fn bindgen_test_layout_hb_draw_state_t() {
     }
     test_field_reserved7();
 }
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct hb_draw_funcs_t {
@@ -2149,6 +2198,8 @@ pub struct hb_draw_funcs_t {
 #[doc = ""]
 #[doc = " Since: 4.0.0"]
 #[doc = ""]
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub type hb_draw_move_to_func_t = ::std::option::Option<
     unsafe extern "C" fn(
         dfuncs: *mut hb_draw_funcs_t,
@@ -2172,6 +2223,8 @@ pub type hb_draw_move_to_func_t = ::std::option::Option<
 #[doc = ""]
 #[doc = " Since: 4.0.0"]
 #[doc = ""]
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub type hb_draw_line_to_func_t = ::std::option::Option<
     unsafe extern "C" fn(
         dfuncs: *mut hb_draw_funcs_t,
@@ -2197,6 +2250,8 @@ pub type hb_draw_line_to_func_t = ::std::option::Option<
 #[doc = ""]
 #[doc = " Since: 4.0.0"]
 #[doc = ""]
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub type hb_draw_quadratic_to_func_t = ::std::option::Option<
     unsafe extern "C" fn(
         dfuncs: *mut hb_draw_funcs_t,
@@ -2226,6 +2281,8 @@ pub type hb_draw_quadratic_to_func_t = ::std::option::Option<
 #[doc = ""]
 #[doc = " Since: 4.0.0"]
 #[doc = ""]
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub type hb_draw_cubic_to_func_t = ::std::option::Option<
     unsafe extern "C" fn(
         dfuncs: *mut hb_draw_funcs_t,
@@ -2251,6 +2308,8 @@ pub type hb_draw_cubic_to_func_t = ::std::option::Option<
 #[doc = ""]
 #[doc = " Since: 4.0.0"]
 #[doc = ""]
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub type hb_draw_close_path_func_t = ::std::option::Option<
     unsafe extern "C" fn(
         dfuncs: *mut hb_draw_funcs_t,
@@ -2269,6 +2328,8 @@ extern "C" {
     #[doc = " Sets move-to callback to the draw functions object."]
     #[doc = ""]
     #[doc = " Since: 4.0.0"]
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_set_move_to_func(
         dfuncs: *mut hb_draw_funcs_t,
         func: hb_draw_move_to_func_t,
@@ -2286,6 +2347,8 @@ extern "C" {
     #[doc = " Sets line-to callback to the draw functions object."]
     #[doc = ""]
     #[doc = " Since: 4.0.0"]
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_set_line_to_func(
         dfuncs: *mut hb_draw_funcs_t,
         func: hb_draw_line_to_func_t,
@@ -2303,6 +2366,8 @@ extern "C" {
     #[doc = " Sets quadratic-to callback to the draw functions object."]
     #[doc = ""]
     #[doc = " Since: 4.0.0"]
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_set_quadratic_to_func(
         dfuncs: *mut hb_draw_funcs_t,
         func: hb_draw_quadratic_to_func_t,
@@ -2320,6 +2385,8 @@ extern "C" {
     #[doc = " Sets cubic-to callback to the draw functions object."]
     #[doc = ""]
     #[doc = " Since: 4.0.0"]
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_set_cubic_to_func(
         dfuncs: *mut hb_draw_funcs_t,
         func: hb_draw_cubic_to_func_t,
@@ -2337,6 +2404,8 @@ extern "C" {
     #[doc = " Sets close-path callback to the draw functions object."]
     #[doc = ""]
     #[doc = " Since: 4.0.0"]
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_set_close_path_func(
         dfuncs: *mut hb_draw_funcs_t,
         func: hb_draw_close_path_func_t,
@@ -2345,21 +2414,33 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_create() -> *mut hb_draw_funcs_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_reference(dfuncs: *mut hb_draw_funcs_t) -> *mut hb_draw_funcs_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_destroy(dfuncs: *mut hb_draw_funcs_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_make_immutable(dfuncs: *mut hb_draw_funcs_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_funcs_is_immutable(dfuncs: *mut hb_draw_funcs_t) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_move_to(
         dfuncs: *mut hb_draw_funcs_t,
         draw_data: *mut ::std::os::raw::c_void,
@@ -2369,6 +2450,8 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_line_to(
         dfuncs: *mut hb_draw_funcs_t,
         draw_data: *mut ::std::os::raw::c_void,
@@ -2378,6 +2461,8 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_quadratic_to(
         dfuncs: *mut hb_draw_funcs_t,
         draw_data: *mut ::std::os::raw::c_void,
@@ -2389,6 +2474,8 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_cubic_to(
         dfuncs: *mut hb_draw_funcs_t,
         draw_data: *mut ::std::os::raw::c_void,
@@ -2402,6 +2489,8 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_draw_close_path(
         dfuncs: *mut hb_draw_funcs_t,
         draw_data: *mut ::std::os::raw::c_void,
@@ -3169,6 +3258,8 @@ pub type hb_font_get_glyph_from_name_func_t = ::std::option::Option<
 #[doc = ""]
 #[doc = " Since: 4.0.0"]
 #[doc = ""]
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub type hb_font_get_glyph_shape_func_t = ::std::option::Option<
     unsafe extern "C" fn(
         font: *mut hb_font_t,
@@ -3461,6 +3552,8 @@ extern "C" {
     #[doc = " Sets the implementation function for #hb_font_get_glyph_shape_func_t."]
     #[doc = ""]
     #[doc = " Since: 4.0.0"]
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_font_funcs_set_glyph_shape_func(
         ffuncs: *mut hb_font_funcs_t,
         func: hb_font_get_glyph_shape_func_t,
@@ -3496,6 +3589,8 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_font_get_nominal_glyphs(
         font: *mut hb_font_t,
         count: ::std::os::raw::c_uint,
@@ -3593,6 +3688,8 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_font_get_glyph_shape(
         font: *mut hb_font_t,
         glyph: hb_codepoint_t,
@@ -3743,9 +3840,13 @@ extern "C" {
     pub fn hb_font_is_immutable(font: *mut hb_font_t) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_4")))]
     pub fn hb_font_get_serial(font: *mut hb_font_t) -> ::std::os::raw::c_uint;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_4")))]
     pub fn hb_font_changed(font: *mut hb_font_t);
 }
 extern "C" {
@@ -3810,9 +3911,13 @@ extern "C" {
     pub fn hb_font_get_ptem(font: *mut hb_font_t) -> ::std::os::raw::c_float;
 }
 extern "C" {
+    #[cfg(any(feature = "v3_3", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_3")))]
     pub fn hb_font_set_synthetic_slant(font: *mut hb_font_t, slant: ::std::os::raw::c_float);
 }
 extern "C" {
+    #[cfg(any(feature = "v3_3", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_3")))]
     pub fn hb_font_get_synthetic_slant(font: *mut hb_font_t) -> ::std::os::raw::c_float;
 }
 extern "C" {
@@ -3823,6 +3928,8 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v3_3", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_3")))]
     pub fn hb_font_set_var_coords_design(
         font: *mut hb_font_t,
         coords: *const ::std::os::raw::c_float,
@@ -3849,6 +3956,8 @@ extern "C" {
     ) -> *const ::std::os::raw::c_int;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_font_set_var_named_instance(
         font: *mut hb_font_t,
         instance_index: ::std::os::raw::c_uint,
@@ -3979,8 +4088,13 @@ fn bindgen_test_layout_hb_glyph_info_t() {
     test_field_var2();
 }
 pub const HB_GLYPH_FLAG_UNSAFE_TO_BREAK: hb_glyph_flags_t = 1;
+#[cfg(any(feature = "v3_3", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_3")))]
 pub const HB_GLYPH_FLAG_UNSAFE_TO_CONCAT: hb_glyph_flags_t = 2;
+#[cfg(feature = "v3_3")]
 pub const HB_GLYPH_FLAG_DEFINED: hb_glyph_flags_t = 3;
+#[cfg(not(feature = "v3_3"))]
+pub const HB_GLYPH_FLAG_DEFINED: hb_glyph_flags_t = 1;
 #[doc = " hb_glyph_flags_t:"]
 #[doc = " @HB_GLYPH_FLAG_UNSAFE_TO_BREAK: Indicates that if input text is broken at the"]
 #[doc = " \t\t\t\t   beginning of the cluster this glyph is part of,"]
@@ -4306,6 +4420,8 @@ extern "C" {
     pub fn hb_segment_properties_hash(p: *const hb_segment_properties_t) -> ::std::os::raw::c_uint;
 }
 extern "C" {
+    #[cfg(any(feature = "v3_3", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_3")))]
     pub fn hb_segment_properties_overlay(
         p: *mut hb_segment_properties_t,
         src: *const hb_segment_properties_t,
@@ -4320,6 +4436,8 @@ extern "C" {
     pub fn hb_buffer_create() -> *mut hb_buffer_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v3_3", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_3")))]
     pub fn hb_buffer_create_similar(src: *const hb_buffer_t) -> *mut hb_buffer_t;
 }
 extern "C" {
@@ -4366,7 +4484,11 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_content_type(buffer: *const hb_buffer_t) -> hb_buffer_content_type_t;
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_content_type(buffer: *mut hb_buffer_t) -> hb_buffer_content_type_t;
 }
 extern "C" {
     pub fn hb_buffer_set_unicode_funcs(
@@ -4375,25 +4497,41 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_unicode_funcs(buffer: *const hb_buffer_t) -> *mut hb_unicode_funcs_t;
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_unicode_funcs(buffer: *mut hb_buffer_t) -> *mut hb_unicode_funcs_t;
 }
 extern "C" {
     pub fn hb_buffer_set_direction(buffer: *mut hb_buffer_t, direction: hb_direction_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_direction(buffer: *const hb_buffer_t) -> hb_direction_t;
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_direction(buffer: *mut hb_buffer_t) -> hb_direction_t;
 }
 extern "C" {
     pub fn hb_buffer_set_script(buffer: *mut hb_buffer_t, script: hb_script_t);
 }
 extern "C" {
+    #[cfg(feature = "v4_4")]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_script(buffer: *const hb_buffer_t) -> hb_script_t;
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_script(buffer: *mut hb_buffer_t) -> hb_script_t;
 }
 extern "C" {
     pub fn hb_buffer_set_language(buffer: *mut hb_buffer_t, language: hb_language_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_language(buffer: *const hb_buffer_t) -> hb_language_t;
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_language(buffer: *mut hb_buffer_t) -> hb_language_t;
 }
 extern "C" {
     pub fn hb_buffer_set_segment_properties(
@@ -4402,8 +4540,15 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_segment_properties(
         buffer: *const hb_buffer_t,
+        props: *mut hb_segment_properties_t,
+    );
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_segment_properties(
+        buffer: *mut hb_buffer_t,
         props: *mut hb_segment_properties_t,
     );
 }
@@ -4416,8 +4561,12 @@ pub const HB_BUFFER_FLAG_EOT: hb_buffer_flags_t = 2;
 pub const HB_BUFFER_FLAG_PRESERVE_DEFAULT_IGNORABLES: hb_buffer_flags_t = 4;
 pub const HB_BUFFER_FLAG_REMOVE_DEFAULT_IGNORABLES: hb_buffer_flags_t = 8;
 pub const HB_BUFFER_FLAG_DO_NOT_INSERT_DOTTED_CIRCLE: hb_buffer_flags_t = 16;
+#[cfg(any(feature = "v3_4", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_4")))]
 pub const HB_BUFFER_FLAG_VERIFY: hb_buffer_flags_t = 32;
 pub const HB_BUFFER_FLAG_PRODUCE_UNSAFE_TO_CONCAT: hb_buffer_flags_t = 64;
+#[cfg(any(feature = "v4_4", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_4")))]
 pub const HB_BUFFER_FLAG_DEFINED: hb_buffer_flags_t = 127;
 #[doc = " hb_buffer_flags_t:"]
 #[doc = " @HB_BUFFER_FLAG_DEFAULT: the default buffer flag."]
@@ -4468,7 +4617,11 @@ extern "C" {
     pub fn hb_buffer_set_flags(buffer: *mut hb_buffer_t, flags: hb_buffer_flags_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_flags(buffer: *const hb_buffer_t) -> hb_buffer_flags_t;
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_flags(buffer: *mut hb_buffer_t) -> hb_buffer_flags_t;
 }
 pub const HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES: hb_buffer_cluster_level_t = 0;
 pub const HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS: hb_buffer_cluster_level_t = 1;
@@ -4508,7 +4661,12 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_cluster_level(buffer: *const hb_buffer_t) -> hb_buffer_cluster_level_t;
+    // since 0.9.42
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_cluster_level(buffer: *mut hb_buffer_t) -> hb_buffer_cluster_level_t;
 }
 extern "C" {
     pub fn hb_buffer_set_replacement_codepoint(
@@ -4517,19 +4675,37 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_replacement_codepoint(buffer: *const hb_buffer_t) -> hb_codepoint_t;
+    // since: 0.9.31
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_replacement_codepoint(buffer: *mut hb_buffer_t) -> hb_codepoint_t;
 }
 extern "C" {
     pub fn hb_buffer_set_invisible_glyph(buffer: *mut hb_buffer_t, invisible: hb_codepoint_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_invisible_glyph(buffer: *const hb_buffer_t) -> hb_codepoint_t;
+    // since: 2.0.0
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_invisible_glyph(buffer: *mut hb_buffer_t) -> hb_codepoint_t;
 }
 extern "C" {
+    #[cfg(feature = "v3_1")]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_1")))]
     pub fn hb_buffer_set_not_found_glyph(buffer: *mut hb_buffer_t, not_found: hb_codepoint_t);
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
+    #[cfg_attr(dox, doc(cfg(feature = "v3_1")))]
     pub fn hb_buffer_get_not_found_glyph(buffer: *const hb_buffer_t) -> hb_codepoint_t;
+    #[cfg(all(feature = "v3_1", not(feature = "v4_4")))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_1")))]
+    pub fn hb_buffer_get_not_found_glyph(buffer: *mut hb_buffer_t) -> hb_codepoint_t;
 }
 extern "C" {
     pub fn hb_buffer_clear_contents(buffer: *mut hb_buffer_t);
@@ -4609,9 +4785,18 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v3_4", dox))]
+    /// *Breaking:* `source` const since v3.4.
     pub fn hb_buffer_append(
         buffer: *mut hb_buffer_t,
         source: *const hb_buffer_t,
+        start: ::std::os::raw::c_uint,
+        end: ::std::os::raw::c_uint,
+    );
+    #[cfg(not(feature = "v3_4"))]
+    pub fn hb_buffer_append(
+        buffer: *mut hb_buffer_t,
+        source: *mut hb_buffer_t,
         start: ::std::os::raw::c_uint,
         end: ::std::os::raw::c_uint,
     );
@@ -4623,7 +4808,11 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    /// *Breaking:* `buffer` const since v4.4.
     pub fn hb_buffer_get_length(buffer: *const hb_buffer_t) -> ::std::os::raw::c_uint;
+    #[cfg(not(feature = "v4_4"))]
+    pub fn hb_buffer_get_length(buffer: *mut hb_buffer_t) -> ::std::os::raw::c_uint;
 }
 extern "C" {
     pub fn hb_buffer_get_glyph_infos(
@@ -4638,6 +4827,8 @@ extern "C" {
     ) -> *mut hb_glyph_position_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_7_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_7_4")))]
     pub fn hb_buffer_has_positions(buffer: *mut hb_buffer_t) -> hb_bool_t;
 }
 extern "C" {
@@ -4650,6 +4841,8 @@ pub const HB_BUFFER_SERIALIZE_FLAG_NO_GLYPH_NAMES: hb_buffer_serialize_flags_t =
 pub const HB_BUFFER_SERIALIZE_FLAG_GLYPH_EXTENTS: hb_buffer_serialize_flags_t = 8;
 pub const HB_BUFFER_SERIALIZE_FLAG_GLYPH_FLAGS: hb_buffer_serialize_flags_t = 16;
 pub const HB_BUFFER_SERIALIZE_FLAG_NO_ADVANCES: hb_buffer_serialize_flags_t = 32;
+#[cfg(any(feature = "v4_4", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_4")))]
 pub const HB_BUFFER_SERIALIZE_FLAG_DEFINED: hb_buffer_serialize_flags_t = 63;
 #[doc = " hb_buffer_serialize_flags_t:"]
 #[doc = " @HB_BUFFER_SERIALIZE_FLAG_DEFAULT: serialize glyph names, clusters and positions."]
@@ -4707,6 +4900,8 @@ extern "C" {
     ) -> ::std::os::raw::c_uint;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_7_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_7_4")))]
     pub fn hb_buffer_serialize_unicode(
         buffer: *mut hb_buffer_t,
         start: ::std::os::raw::c_uint,
@@ -4719,6 +4914,8 @@ extern "C" {
     ) -> ::std::os::raw::c_uint;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_7_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_7_4")))]
     pub fn hb_buffer_serialize(
         buffer: *mut hb_buffer_t,
         start: ::std::os::raw::c_uint,
@@ -4742,6 +4939,8 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_7_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_7_4")))]
     pub fn hb_buffer_deserialize_unicode(
         buffer: *mut hb_buffer_t,
         buf: *const ::std::os::raw::c_char,
@@ -5029,6 +5228,8 @@ extern "C" {
     pub fn hb_map_allocation_successful(map: *const hb_map_t) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_4")))]
     pub fn hb_map_copy(map: *const hb_map_t) -> *mut hb_map_t;
 }
 extern "C" {
@@ -5041,9 +5242,13 @@ extern "C" {
     pub fn hb_map_get_population(map: *const hb_map_t) -> ::std::os::raw::c_uint;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_3", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_3")))]
     pub fn hb_map_is_equal(map: *const hb_map_t, other: *const hb_map_t) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_4")))]
     pub fn hb_map_hash(map: *const hb_map_t) -> ::std::os::raw::c_uint;
 }
 extern "C" {
@@ -5161,13 +5366,29 @@ extern "C" {
         shape_plan: *mut hb_shape_plan_t,
     ) -> *const ::std::os::raw::c_char;
 }
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_STYLE_TAG_ITALIC: hb_style_tag_t = 1769234796;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_STYLE_TAG_OPTICAL_SIZE: hb_style_tag_t = 1869640570;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_STYLE_TAG_SLANT_ANGLE: hb_style_tag_t = 1936486004;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_STYLE_TAG_SLANT_RATIO: hb_style_tag_t = 1399615092;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_STYLE_TAG_WIDTH: hb_style_tag_t = 2003072104;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const HB_STYLE_TAG_WEIGHT: hb_style_tag_t = 2003265652;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 pub const _HB_STYLE_TAG_MAX_VALUE: hb_style_tag_t = 2147483647;
+#[cfg(any(feature = "v3_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
 #[doc = " hb_style_tag_t:"]
 #[doc = " @HB_STYLE_TAG_ITALIC: Used to vary between non-italic and italic."]
 #[doc = " A value of 0 can be interpreted as \"Roman\" (non-italic); a value of 1 can"]
@@ -5194,7 +5415,12 @@ pub const _HB_STYLE_TAG_MAX_VALUE: hb_style_tag_t = 2147483647;
 #[doc = " Since: 3.0.0"]
 pub type hb_style_tag_t = ::std::os::raw::c_uint;
 extern "C" {
-    pub fn hb_style_get_value(font: *mut hb_font_t, style_tag: hb_style_tag_t) -> ::std::os::raw::c_float;
+    #[cfg(any(feature = "v3_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_0")))]
+    pub fn hb_style_get_value(
+        font: *mut hb_font_t,
+        style_tag: hb_style_tag_t,
+    ) -> ::std::os::raw::c_float;
 }
 extern "C" {
     pub fn hb_version(
@@ -5880,6 +6106,8 @@ extern "C" {
     pub fn hb_ot_layout_has_substitution(face: *mut hb_face_t) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_layout_lookup_get_glyph_alternates(
         face: *mut hb_face_t,
         lookup_index: ::std::os::raw::c_uint,
@@ -5947,20 +6175,42 @@ extern "C" {
         characters: *mut hb_codepoint_t,
     ) -> ::std::os::raw::c_uint;
 }
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_ROMAN: hb_ot_layout_baseline_tag_t = 1919905134;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_HANGING: hb_ot_layout_baseline_tag_t = 1751215719;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_IDEO_FACE_BOTTOM_OR_LEFT: hb_ot_layout_baseline_tag_t =
     1768121954;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_IDEO_FACE_TOP_OR_RIGHT: hb_ot_layout_baseline_tag_t =
     1768121972;
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_IDEO_FACE_CENTRAL: hb_ot_layout_baseline_tag_t = 1231251043;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_IDEO_EMBOX_BOTTOM_OR_LEFT: hb_ot_layout_baseline_tag_t =
     1768187247;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_IDEO_EMBOX_TOP_OR_RIGHT: hb_ot_layout_baseline_tag_t =
     1768191088;
+#[cfg(any(feature = "v4_0", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_IDEO_EMBOX_CENTRAL: hb_ot_layout_baseline_tag_t = 1231315813;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_LAYOUT_BASELINE_TAG_MATH: hb_ot_layout_baseline_tag_t = 1835103336;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const _HB_OT_LAYOUT_BASELINE_TAG_MAX_VALUE: hb_ot_layout_baseline_tag_t = 2147483647;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 #[doc = " hb_ot_layout_baseline_tag_t:"]
 #[doc = " @HB_OT_LAYOUT_BASELINE_TAG_ROMAN: The baseline used by alphabetic scripts such as Latin, Cyrillic and Greek."]
 #[doc = " In vertical writing mode, the alphabetic baseline for characters rotated 90 degrees clockwise."]
@@ -5987,11 +6237,15 @@ pub const _HB_OT_LAYOUT_BASELINE_TAG_MAX_VALUE: hb_ot_layout_baseline_tag_t = 21
 #[doc = " Since: 2.6.0"]
 pub type hb_ot_layout_baseline_tag_t = ::std::os::raw::c_uint;
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_ot_layout_get_horizontal_baseline_tag_for_script(
         script: hb_script_t,
     ) -> hb_ot_layout_baseline_tag_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_layout_get_baseline(
         font: *mut hb_font_t,
         baseline_tag: hb_ot_layout_baseline_tag_t,
@@ -6002,6 +6256,8 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_ot_layout_get_baseline_with_fallback(
         font: *mut hb_font_t,
         baseline_tag: hb_ot_layout_baseline_tag_t,
@@ -6147,6 +6403,8 @@ pub const HB_OT_MATH_KERN_BOTTOM_LEFT: hb_ot_math_kern_t = 3;
 #[doc = ""]
 #[doc = " Since: 1.3.3"]
 pub type hb_ot_math_kern_t = ::std::os::raw::c_uint;
+#[cfg(any(feature = "v3_4", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v3_4")))]
 #[doc = " hb_ot_math_kern_entry_t:"]
 #[doc = " @max_correction_height: The maximum height at which this entry should be used"]
 #[doc = " @kern_value: The kern value of the entry"]
@@ -6160,6 +6418,7 @@ pub struct hb_ot_math_kern_entry_t {
     pub max_correction_height: hb_position_t,
     pub kern_value: hb_position_t,
 }
+#[cfg(feature = "v3_4")]
 #[test]
 fn bindgen_test_layout_hb_ot_math_kern_entry_t() {
     assert_eq!(
@@ -6431,6 +6690,8 @@ extern "C" {
     ) -> hb_position_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v3_4", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v3_4")))]
     pub fn hb_ot_math_get_glyph_kernings(
         font: *mut hb_font_t,
         glyph: hb_codepoint_t,
@@ -6467,9 +6728,17 @@ extern "C" {
         italics_correction: *mut hb_position_t,
     ) -> ::std::os::raw::c_uint;
 }
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_META_TAG_DESIGN_LANGUAGES: hb_ot_meta_tag_t = 1684827751;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_META_TAG_SUPPORTED_LANGUAGES: hb_ot_meta_tag_t = 1936485991;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const _HB_OT_META_TAG_MAX_VALUE: hb_ot_meta_tag_t = 2147483647;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 #[doc = " hb_ot_meta_tag_t:"]
 #[doc = " @HB_OT_META_TAG_DESIGN_LANGUAGES: Design languages. Text, using only"]
 #[doc = " Basic Latin (ASCII) characters. Indicates languages and/or scripts"]
@@ -6483,6 +6752,8 @@ pub const _HB_OT_META_TAG_MAX_VALUE: hb_ot_meta_tag_t = 2147483647;
 #[doc = " Since: 2.6.0"]
 pub type hb_ot_meta_tag_t = ::std::os::raw::c_uint;
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_meta_get_entry_tags(
         face: *mut hb_face_t,
         start_offset: ::std::os::raw::c_uint,
@@ -6491,39 +6762,99 @@ extern "C" {
     ) -> ::std::os::raw::c_uint;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_meta_reference_entry(
         face: *mut hb_face_t,
         meta_tag: hb_ot_meta_tag_t,
     ) -> *mut hb_blob_t;
 }
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_ASCENDER: hb_ot_metrics_tag_t = 1751216995;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_DESCENDER: hb_ot_metrics_tag_t = 1751413603;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_LINE_GAP: hb_ot_metrics_tag_t = 1751934832;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_CLIPPING_ASCENT: hb_ot_metrics_tag_t = 1751346273;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_CLIPPING_DESCENT: hb_ot_metrics_tag_t = 1751346276;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_VERTICAL_ASCENDER: hb_ot_metrics_tag_t = 1986098019;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_VERTICAL_DESCENDER: hb_ot_metrics_tag_t = 1986294627;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_VERTICAL_LINE_GAP: hb_ot_metrics_tag_t = 1986815856;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_CARET_RISE: hb_ot_metrics_tag_t = 1751347827;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_CARET_RUN: hb_ot_metrics_tag_t = 1751347822;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_HORIZONTAL_CARET_OFFSET: hb_ot_metrics_tag_t = 1751347046;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_VERTICAL_CARET_RISE: hb_ot_metrics_tag_t = 1986228851;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_VERTICAL_CARET_RUN: hb_ot_metrics_tag_t = 1986228846;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_VERTICAL_CARET_OFFSET: hb_ot_metrics_tag_t = 1986228070;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_X_HEIGHT: hb_ot_metrics_tag_t = 2020108148;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_CAP_HEIGHT: hb_ot_metrics_tag_t = 1668311156;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUBSCRIPT_EM_X_SIZE: hb_ot_metrics_tag_t = 1935833203;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUBSCRIPT_EM_Y_SIZE: hb_ot_metrics_tag_t = 1935833459;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUBSCRIPT_EM_X_OFFSET: hb_ot_metrics_tag_t = 1935833199;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUBSCRIPT_EM_Y_OFFSET: hb_ot_metrics_tag_t = 1935833455;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUPERSCRIPT_EM_X_SIZE: hb_ot_metrics_tag_t = 1936750707;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUPERSCRIPT_EM_Y_SIZE: hb_ot_metrics_tag_t = 1936750963;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUPERSCRIPT_EM_X_OFFSET: hb_ot_metrics_tag_t = 1936750703;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_SUPERSCRIPT_EM_Y_OFFSET: hb_ot_metrics_tag_t = 1936750959;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_STRIKEOUT_SIZE: hb_ot_metrics_tag_t = 1937011315;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_STRIKEOUT_OFFSET: hb_ot_metrics_tag_t = 1937011311;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_UNDERLINE_SIZE: hb_ot_metrics_tag_t = 1970168947;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const HB_OT_METRICS_TAG_UNDERLINE_OFFSET: hb_ot_metrics_tag_t = 1970168943;
+#[cfg(any(feature = "v2_6_8", dox))]
+#[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
 pub const _HB_OT_METRICS_TAG_MAX_VALUE: hb_ot_metrics_tag_t = 2147483647;
 #[doc = " hb_ot_metrics_tag_t:"]
 #[doc = " @HB_OT_METRICS_TAG_HORIZONTAL_ASCENDER: horizontal ascender."]
@@ -6561,6 +6892,8 @@ pub const _HB_OT_METRICS_TAG_MAX_VALUE: hb_ot_metrics_tag_t = 2147483647;
 #[doc = " Since: 2.6.0"]
 pub type hb_ot_metrics_tag_t = ::std::os::raw::c_uint;
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_metrics_get_position(
         font: *mut hb_font_t,
         metrics_tag: hb_ot_metrics_tag_t,
@@ -6568,6 +6901,8 @@ extern "C" {
     ) -> hb_bool_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v4_0", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v4_0")))]
     pub fn hb_ot_metrics_get_position_with_fallback(
         font: *mut hb_font_t,
         metrics_tag: hb_ot_metrics_tag_t,
@@ -6575,18 +6910,24 @@ extern "C" {
     );
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_metrics_get_variation(
         font: *mut hb_font_t,
         metrics_tag: hb_ot_metrics_tag_t,
     ) -> ::std::os::raw::c_float;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_metrics_get_x_variation(
         font: *mut hb_font_t,
         metrics_tag: hb_ot_metrics_tag_t,
     ) -> hb_position_t;
 }
 extern "C" {
+    #[cfg(any(feature = "v2_6_8", dox))]
+    #[cfg_attr(dox, doc(cfg(feature = "v2_6_8")))]
     pub fn hb_ot_metrics_get_y_variation(
         font: *mut hb_font_t,
         metrics_tag: hb_ot_metrics_tag_t,
