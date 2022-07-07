@@ -26,7 +26,13 @@ jobs:
           sudo pip install meson
           sudo apt update
           sudo apt install ninja-build -y
-          meson $RUNNER_TEMP/build harfbuzz-sys/harfbuzz --prefix $PREFIX --libdir lib --default-library static -Dicu=disabled -Dfreetype=disabled -Dglib=disabled
+          meson $RUNNER_TEMP/build harfbuzz-sys/harfbuzz \
+            --prefix $PREFIX \
+            --libdir lib \
+            --default-library static \
+            -Dicu=disabled \
+            -Dfreetype=disabled \
+            -Dglib=disabled
           meson compile -C $RUNNER_TEMP/build
           sudo meson install -C $RUNNER_TEMP/build
           TEMP_PATH="$PREFIX/lib"
@@ -75,15 +81,19 @@ jobs:
           sudo apt install ninja-build -y
 
       - name: Cargo build
-        run: cargo build --workspace --features vendored
+        run: cargo build --workspace --features vendored --features v4_4
 
       - name: Cargo test
-        run: cargo test --workspace --features vendored
+        run: cargo test --workspace --features vendored --features v4_4
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml --features vendored
+        run: >-
+          cargo run
+            --manifest-path=systest/Cargo.toml
+            --features vendored
+            --features v4_4
 
   linux-ci-shared:
     name: stable, Linux, shared linking, no pkg-config
@@ -102,43 +112,22 @@ jobs:
           toolchain: stable
           override: true
 
-      - name: Build harfbuzz
-        env:
-          PREFIX: /usr/local
-        run: |
-          sudo pip install meson
-          sudo apt update
-          sudo apt install ninja-build -y
-          meson $RUNNER_TEMP/build \
-            harfbuzz-sys/harfbuzz \
-            --prefix $PREFIX \
-            --libdir lib \
-            --default-library shared \
-            -Dicu=disabled \
-            -Dglib=disabled \
-            -Dfreetype=disabled
-          meson compile -C $RUNNER_TEMP/build
-          sudo meson install -C $RUNNER_TEMP/build
-          TEMP_PATH="$PREFIX/lib"
-          echo "LD_LIBRARY_PATH=$TEMP_PATH" >> $GITHUB_ENV
-          [[ "$TEMP_PATH" == "$PREFIX/lib" ]] || exit 1
-
-      # Test the harfbuzz-sys package build to check the 'exclude's. We should
-      # do this where the embedded harfbuzz is statically linked, but we don't
-      # need to do it for every environment.
       - name: Cargo package
-        run: cargo package --manifest-path=harfbuzz-sys/Cargo.toml
+        run: |
+          cargo package
+            --manifest-path=harfbuzz-sys/Cargo.toml
+            --features v2_6_8
 
       - name: Cargo build
-        run: cargo build --workspace
+        run: cargo build --workspace --features v2_6_8
 
       - name: Cargo test
-        run: cargo test --workspace
+        run: cargo test --workspace --features v2_6_8
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml
+        run: cargo run --manifest-path=systest/Cargo.toml --features v2_6_8
 
   linux-ci-bindgen:
     name: stable, Linux, system pkg-config and bindgen
