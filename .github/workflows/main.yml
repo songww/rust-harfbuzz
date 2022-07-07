@@ -41,7 +41,7 @@ jobs:
           override: true
 
       - name: Cargo build
-        run: cargo build --workspace
+        run: cargo build --workspace --features v2_6
 
       - name: Cargo test
         run: cargo test --workspace
@@ -249,10 +249,7 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
-      #
-      # - uses: actions/setup-python@v4
-      #   with:
-      #     python-version: '3.x'
+
       - name: install meson
         run: pip install meson ninja
 
@@ -319,15 +316,19 @@ jobs:
             mingw-w64-x86_64-pkg-config
 
       - name: Cargo build
-        run: cargo build --workspace --features vendored
+        run: cargo build --workspace --features vendored --features v4_4
 
       - name: Cargo test
-        run: cargo test --workspace --features vendored
+        run: cargo test --workspace --features vendored --features v4_4
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml --features bindgen
+        run: >-
+          cargo run
+            --manifest-path=systest/Cargo.toml
+            --features vendored
+            --features v4_4
 
   build_result:
     name: homu build finished
