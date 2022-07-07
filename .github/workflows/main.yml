@@ -194,15 +194,15 @@ jobs:
         run: brew install harfbuzz
 
       - name: Cargo build
-        run: cargo build --workspace
+        run: cargo build --workspace --features v4_3
 
       - name: Cargo test
-        run: cargo test --workspace
+        run: cargo test --workspace --features v4_3
         env:
           RUST_BACKTRACE: 1
 
       - name: ctest tests
-        run: cargo run --manifest-path=systest/Cargo.toml
+        run: cargo run --manifest-path=systest/Cargo.toml --features v4_3
 
   mac-ci-shared-bindgen-latest:
     name: stable, macOS, shared library, bindgen with harfbuzz latest version

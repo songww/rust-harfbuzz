@@ -2,7 +2,7 @@ extern crate core_graphics;
 extern crate core_text;
 extern crate foreign_types;
 
-use {hb_face_t, hb_font_t};
+use crate::{hb_face_t, hb_font_t};
 
 use self::core_graphics::font::CGFont;
 use self::core_text::font::CTFontRef;
